@@ -1,0 +1,601 @@
+[{
+  "_id": {
+    "$oid": "684471116cd9d2b11b112d0c"
+  },
+  "game_id": "crazygame_001",
+  "title": "Smash Karts",
+  "genre": "Racing",
+  "description": "Smash Karts is a fast-paced multiplayer kart battle game where players race around dynamic arenas, collecting power-ups and using weapons to eliminate opponents. With vibrant graphics and fast-paced action, it offers endless fun and competitive gameplay.",
+  "instructions": "Use arrow keys or WASD to drive your kart. Press the spacebar to shoot weapons. Collect power-ups scattered across the arena to gain an advantage over your opponents.",
+  "rating": 4.5,
+  "embed_code": "<iframe src=\"https://www.crazygames.com/embed/smash-karts\" width=\"800\" height=\"600\" frameborder=\"0\" allowfullscreen></iframe>",
+  "image_url": "https://images.crazygames.com/games/smash-karts/cover-1580123585139.png"
+},
+{
+  "_id": {
+    "$oid": "684471116cd9d2b11b112d0d"
+  },
+  "game_id": "crazygame_002",
+  "title": "Shell Shockers",
+  "genre": "Shooting",
+  "description": "Shell Shockers is an egg-themed multiplayer first-person shooter where players control armed eggs in a battle for supremacy. Choose from various egg classes, each with unique weapons, and engage in intense combat across diverse maps.",
+  "instructions": "Use WASD to move, mouse to aim and shoot. Press E to switch weapons, R to reload. Choose your egg class wisely to dominate the battlefield.",
+  "rating": 4.7,
+  "embed_code": "<iframe src=\"https://www.crazygames.com/embed/shellshockersio\" width=\"800\" height=\"600\" frameborder=\"0\" allowfullscreen></iframe>"
+},
+{
+  "_id": {
+    "$oid": "684471116cd9d2b11b112d0e"
+  },
+  "game_id": "crazygame_003",
+  "title": "Paper.io 2",
+  "genre": "Arcade",
+  "description": "Paper.io 2 is a real-time multiplayer .io game where you have to capture as much territory as possible by painting it. Paint the map in your own color to take over the Paper.io world!",
+  "instructions": "Use arrow keys or mouse to control your square. Enclose areas to capture territory. Avoid colliding with other players' lines while your own line is exposed.",
+  "rating": 4.3,
+  "embed_code": "<iframe src=\"https://www.crazygames.com/embed/paper-io-2\" width=\"800\" height=\"600\" frameborder=\"0\" allowfullscreen></iframe>"
+},
+{
+  "_id": {
+    "$oid": "684471116cd9d2b11b112d0f"
+  },
+  "game_id": "crazygame_004",
+  "title": "Moto X3M",
+  "genre": "Racing",
+  "description": "Moto X3M is an exhilarating bike racing game featuring challenging tracks filled with obstacles, ramps, and loops. Perform stunts and navigate through dangerous terrains to reach the finish line as quickly as possible.",
+  "instructions": "Use arrow keys to control your bike. Accelerate, brake, and balance your rider to overcome obstacles and perform flips for time bonuses.",
+  "rating": 4.6,
+  "embed_code": "<iframe src=\"https://www.crazygames.com/embed/moto-x3m\" width=\"800\" height=\"600\" frameborder=\"0\" allowfullscreen></iframe>"
+},
+{
+  "_id": {
+    "$oid": "684471116cd9d2b11b112d10"
+  },
+  "game_id": "crazygame_005",
+  "title": "Bullet Force",
+  "genre": "Shooting",
+  "description": "Bullet Force is a modern multiplayer first-person shooter with stunning graphics and dynamic gameplay. Engage in various game modes, customize your loadout, and compete against players worldwide in intense firefights.",
+  "instructions": "Use WASD to move, mouse to aim and shoot. Press E to pick up weapons, R to reload. Customize your loadout before matches to suit your playstyle.",
+  "rating": 4.4,
+  "embed_code": "<iframe src=\"https://www.crazygames.com/embed/bullet-force-multiplayer\" width=\"800\" height=\"600\" frameborder=\"0\" allowfullscreen></iframe>"
+},
+{
+  "_id": {
+    "$oid": "684471116cd9d2b11b112d11"
+  },
+  "game_id": "crazygame_006",
+  "title": "Krunker.io",
+  "genre": "Shooting",
+  "description": "Krunker.io is a fast-paced pixelated first-person shooter game. Players can choose from various classes and engage in intense multiplayer battles across different maps.",
+  "instructions": "Use WASD to move, mouse to aim and shoot. Press R to reload, and use the number keys to switch weapons.",
+  "rating": 4.6,
+  "embed_code": "<iframe src=\"https://www.crazygames.com/embed/krunker-io\" width=\"800\" height=\"600\" frameborder=\"0\" allowfullscreen></iframe>"
+},
+{
+  "_id": {
+    "$oid": "684471116cd9d2b11b112d12"
+  },
+  "game_id": "crazygame_007",
+  "title": "Rooftop Snipers",
+  "genre": "Shooting",
+  "description": "Rooftop Snipers is a chaotic two-button two-player sniper game. Find a friend to play with, or practice by playing against the computer in this rage-inducing action game.",
+  "instructions": "Player 1: W to jump, E to shoot. Player 2: I to jump, O to shoot.",
+  "rating": 4.2,
+  "embed_code": "<iframe src=\"https://www.crazygames.com/embed/rooftop-snipers\" width=\"800\" height=\"600\" frameborder=\"0\" allowfullscreen></iframe>"
+},
+{
+  "_id": {
+    "$oid": "684471116cd9d2b11b112d13"
+  },
+  "game_id": "crazygame_008",
+  "title": "1v1.lol",
+  "genre": "Shooting",
+  "description": "1v1.lol is a highly tactical and competitive shooter, where fast and effective building is just as important as having sharp aim and quick reactions.",
+  "instructions": "Use WASD to move, mouse to aim and shoot. Use Q, C, Z, and X to build walls, ramps, and platforms.",
+  "rating": 4.5,
+  "embed_code": "<iframe src=\"https://www.crazygames.com/embed/1v1-lol\" width=\"800\" height=\"600\" frameborder=\"0\" allowfullscreen></iframe>"
+},
+{
+  "_id": {
+    "$oid": "684471116cd9d2b11b112d14"
+  },
+  "game_id": "crazygame_009",
+  "title": "Temple Run 2",
+  "genre": "Adventure",
+  "description": "Temple Run 2 is an endless running game where you navigate perilous cliffs, zip lines, mines, and forests as you try to escape with the cursed idol.",
+  "instructions": "Use arrow keys to move and jump. Avoid obstacles and collect coins to increase your score.",
+  "rating": 4.3,
+  "embed_code": "<iframe src=\"https://www.crazygames.com/embed/temple-run-2\" width=\"800\" height=\"600\" frameborder=\"0\" allowfullscreen></iframe>"
+},
+{
+  "_id": {
+    "$oid": "684471116cd9d2b11b112d15"
+  },
+  "game_id": "crazygame_010",
+  "title": "Among Us",
+  "genre": "Multiplayer",
+  "description": "Among Us is a multiplayer game where players work together to complete tasks on a spaceship, but beware—some players are impostors aiming to sabotage the mission.",
+  "instructions": "Use WASD to move. Complete tasks and identify impostors before they eliminate the crew.",
+  "rating": 4.4,
+  "embed_code": "<iframe src=\"https://www.crazygames.com/embed/among-us\" width=\"800\" height=\"600\" frameborder=\"0\" allowfullscreen></iframe>"
+},
+{
+  "_id": {
+    "$oid": "684471266cd9d2b11b112d17"
+  },
+  "game_id": "crazygame_011",
+  "title": "Bloxd.io",
+  "genre": "Multiplayer",
+  "description": "Bloxd.io is a multiplayer platform game inspired by Minecraft. Players can explore various game modes, including parkour, survival, and creative building, all within a blocky 3D environment.",
+  "instructions": "Use WASD to move, spacebar to jump, and mouse to look around. Press T to chat and B to open the shop.",
+  "rating": 4.2,
+  "embed_code": "<iframe src=\"https://www.crazygames.com/embed/bloxd-io\" width=\"800\" height=\"600\" frameborder=\"0\" allowfullscreen></iframe>"
+},
+{
+  "_id": {
+    "$oid": "684471266cd9d2b11b112d18"
+  },
+  "game_id": "crazygame_012",
+  "title": "Ragdoll Archers",
+  "genre": "Shooting",
+  "description": "Ragdoll Archers is a physics-based archery game where players control a ragdoll archer to defeat opponents. Aim carefully and adjust your shots to account for gravity and movement.",
+  "instructions": "Click and drag to aim and shoot arrows. Defeat your opponent before they defeat you.",
+  "rating": 4.1,
+  "embed_code": "<iframe src=\"https://www.crazygames.com/embed/ragdoll-archers\" width=\"800\" height=\"600\" frameborder=\"0\" allowfullscreen></iframe>"
+},
+{
+  "_id": {
+    "$oid": "684471266cd9d2b11b112d19"
+  },
+  "game_id": "crazygame_013",
+  "title": "Traffic Rider",
+  "genre": "Racing",
+  "description": "Traffic Rider is a first-person motorcycle racing game where players navigate through traffic at high speeds. Complete missions and upgrade your bike for better performance.",
+  "instructions": "Use arrow keys or WASD to control the bike. Avoid collisions and complete objectives to progress.",
+  "rating": 4.3,
+  "embed_code": "<iframe src=\"https://www.crazygames.com/embed/traffic-rider\" width=\"800\" height=\"600\" frameborder=\"0\" allowfullscreen></iframe>"
+},
+{
+  "_id": {
+    "$oid": "684471266cd9d2b11b112d1a"
+  },
+  "game_id": "crazygame_014",
+  "title": "Count Masters: Stickman Games",
+  "genre": "Arcade",
+  "description": "Count Masters is a fun arcade game where players lead a group of stickmen through various obstacles, collecting more members and battling enemies to reach the end.",
+  "instructions": "Use mouse or arrow keys to move your group. Collect numbers to increase your count and defeat enemies.",
+  "rating": 4,
+  "embed_code": "<iframe src=\"https://www.crazygames.com/embed/count-masters-stickman-games\" width=\"800\" height=\"600\" frameborder=\"0\" allowfullscreen></iframe>"
+},
+{
+  "_id": {
+    "$oid": "684471266cd9d2b11b112d1b"
+  },
+  "game_id": "crazygame_015",
+  "title": "Stone Grass: Mowing Simulator",
+  "genre": "Simulation",
+  "description": "Stone Grass is a relaxing mowing simulator where players control a mower to clear grass fields. Upgrade your equipment and unlock new areas as you progress.",
+  "instructions": "Use WASD or arrow keys to move the mower. Collect grass to earn money for upgrades.",
+  "rating": 4.2,
+  "embed_code": "<iframe src=\"https://www.crazygames.com/embed/stone-grass-mowing-simulator\" width=\"800\" height=\"600\" frameborder=\"0\" allowfullscreen></iframe>"
+},
+{
+  "_id": {
+    "$oid": "684471266cd9d2b11b112d1c"
+  },
+  "game_id": "crazygame_016",
+  "title": "Slice Master",
+  "genre": "Arcade",
+  "description": "Slice Master is an addictive arcade game where players control a knife to slice through various objects while avoiding obstacles. Timing and precision are key to achieving high scores.",
+  "instructions": "Click to make the knife jump and slice through objects. Avoid hitting red zones or obstacles.",
+  "rating": 4.3,
+  "embed_code": "<iframe src=\"https://www.crazygames.com/embed/slice-master\" width=\"800\" height=\"600\" frameborder=\"0\" allowfullscreen></iframe>"
+},
+{
+  "_id": {
+    "$oid": "684471266cd9d2b11b112d1d"
+  },
+  "game_id": "crazygame_017",
+  "title": "Planet Smash Destruction",
+  "genre": "Action",
+  "description": "Planet Smash Destruction is an action-packed game where players use various weapons to destroy planets. Unlock new tools and cause maximum destruction.",
+  "instructions": "Use mouse to select weapons and click to use them on the planet. Experiment with different tools for varied effects.",
+  "rating": 4.1,
+  "embed_code": "<iframe src=\"https://www.crazygames.com/embed/planet-smash-destruction\" width=\"800\" height=\"600\" frameborder=\"0\" allowfullscreen></iframe>"
+},
+{
+  "_id": {
+    "$oid": "684471266cd9d2b11b112d1e"
+  },
+  "game_id": "crazygame_018",
+  "title": "Tower Swap",
+  "genre": "Puzzle",
+  "description": "Tower Swap is a match-3 puzzle game combined with tower defense mechanics. Match resources to build and upgrade towers to defend against waves of enemies.",
+  "instructions": "Swap adjacent tiles to match three or more of the same resource. Use resources to build and upgrade towers.",
+  "rating": 4.4,
+  "embed_code": "<iframe src=\"https://www.crazygames.com/embed/tower-swap\" width=\"800\" height=\"600\" frameborder=\"0\" allowfullscreen></iframe>"
+},
+{
+  "_id": {
+    "$oid": "684471266cd9d2b11b112d1f"
+  },
+  "game_id": "crazygame_019",
+  "title": "Hazmob FPS: Online Shooter",
+  "genre": "Shooting",
+  "description": "Hazmob FPS is a multiplayer first-person shooter featuring various game modes and maps. Customize your loadout and compete against players worldwide.",
+  "instructions": "Use WASD to move, mouse to aim and shoot. Press R to reload and use number keys to switch weapons.",
+  "rating": 4.5,
+  "embed_code": "<iframe src=\"https://www.crazygames.com/embed/hazmob-fps-online-shooter\" width=\"800\" height=\"600\" frameborder=\"0\" allowfullscreen></iframe>"
+},
+{
+  "_id": {
+    "$oid": "684471266cd9d2b11b112d20"
+  },
+  "game_id": "crazygame_020",
+  "title": "8 Ball Billiards Classic",
+  "genre": "Sports",
+  "description": "8 Ball Billiards Classic is a traditional pool game where players can challenge the computer or a friend in a game of 8-ball. Aim carefully and sink all your balls to win.",
+  "instructions": "Use mouse to aim and adjust power. Click to shoot the cue ball and sink your designated balls.",
+  "rating": 4.3,
+  "embed_code": "<iframe src=\"https://www.crazygames.com/embed/8-ball-billiards-classic\" width=\"800\" height=\"600\" frameborder=\"0\" allowfullscreen></iframe>"
+},
+{
+  "_id": {
+    "$oid": "684471546cd9d2b11b112d22"
+  },
+  "game_id": "crazygame_021",
+  "title": "Ships 3D",
+  "genre": "Multiplayer",
+  "description": "Ships 3D is an online naval warfare game featuring frantic frigate battles and chaotic smash-ups at sea. Join your friends in thrilling multiplayer ship wars featuring up to 20 players.",
+  "instructions": "Use WASD to move, mouse to look around. Press F to interact with steering, sail, and cannons when standing close to them.",
+  "rating": 9,
+  "embed_code": "<iframe src=\"https://www.crazygames.com/embed/ships-3d\" width=\"800\" height=\"600\" frameborder=\"0\" allowfullscreen></iframe>"
+},
+{
+  "_id": {
+    "$oid": "684471546cd9d2b11b112d23"
+  },
+  "game_id": "crazygame_022",
+  "title": "Idle Blogger Simulator",
+  "genre": "Simulation",
+  "description": "Idle Blogger Simulator is a clicker simulation game where you are the rising star as a digital creator, ready to take on the internet—all from behind your desk! Choose quirky channel themes and upgrade your gear to produce top-notch content.",
+  "instructions": "Click to create content, upgrade your equipment, and expand your channel's reach.",
+  "rating": 8.5,
+  "embed_code": "<iframe src=\"https://www.crazygames.com/embed/idle-blogger-simulator\" width=\"800\" height=\"600\" frameborder=\"0\" allowfullscreen></iframe>"
+},
+{
+  "_id": {
+    "$oid": "684471546cd9d2b11b112d24"
+  },
+  "game_id": "crazygame_023",
+  "title": "Miniblox",
+  "genre": "Adventure",
+  "description": "Miniblox is a multiplayer sandbox game inspired by Minecraft. Explore, build, and survive in a blocky world with friends or other players online.",
+  "instructions": "Use WASD to move, mouse to look around and interact. Press E to open inventory.",
+  "rating": 8.5,
+  "embed_code": "<iframe src=\"https://www.crazygames.com/embed/miniblox\" width=\"800\" height=\"600\" frameborder=\"0\" allowfullscreen></iframe>"
+},
+{
+  "_id": {
+    "$oid": "684471546cd9d2b11b112d25"
+  },
+  "game_id": "crazygame_024",
+  "title": "BuildNow GG",
+  "genre": "Shooting",
+  "description": "BuildNow GG is a multiplayer third-person shooter with building mechanics. Engage in fast-paced battles while constructing structures for defense and strategic advantage.",
+  "instructions": "Use WASD to move, mouse to aim and shoot. Use Q, C, Z, and X to build walls, ramps, and platforms.",
+  "rating": 4.6,
+  "embed_code": "<iframe src=\"https://www.crazygames.com/embed/buildnow-gg\" width=\"800\" height=\"600\" frameborder=\"0\" allowfullscreen></iframe>"
+},
+{
+  "_id": {
+    "$oid": "684471546cd9d2b11b112d26"
+  },
+  "game_id": "crazygame_025",
+  "title": "Fortzone Battle Royale",
+  "genre": "Shooting",
+  "description": "Fortzone Battle Royale is an action-packed shooter game where players fight to be the last one standing. Utilize various weapons and strategies to outlast opponents in a shrinking battlefield.",
+  "instructions": "Use WASD to move, mouse to aim and shoot. Collect weapons and resources to survive.",
+  "rating": 4.4,
+  "embed_code": "<iframe src=\"https://www.crazygames.com/embed/fortzone-battle-royale\" width=\"800\" height=\"600\" frameborder=\"0\" allowfullscreen></iframe>"
+},
+{
+  "_id": {
+    "$oid": "684471546cd9d2b11b112d27"
+  },
+  "game_id": "crazygame_026",
+  "title": "Racing Limits",
+  "genre": "Racing",
+  "description": "Racing Limits is a high-speed racing game where players navigate through traffic, aiming to cover maximum distance without crashing. Experience realistic physics and multiple game modes.",
+  "instructions": "Use arrow keys or WASD to control the car. Avoid collisions and overtake vehicles to earn points.",
+  "rating": 4.3,
+  "embed_code": "<iframe src=\"https://www.crazygames.com/embed/racing-limits\" width=\"800\" height=\"600\" frameborder=\"0\" allowfullscreen></iframe>"
+},
+{
+  "_id": {
+    "$oid": "684471546cd9d2b11b112d28"
+  },
+  "game_id": "crazygame_027",
+  "title": "SkillWarz",
+  "genre": "Shooting",
+  "description": "SkillWarz is a multiplayer first-person shooter featuring various weapons and maps. Test your shooting skills against players worldwide in fast-paced matches.",
+  "instructions": "Use WASD to move, mouse to aim and shoot. Press R to reload and use number keys to switch weapons.",
+  "rating": 4.5,
+  "embed_code": "<iframe src=\"https://www.crazygames.com/embed/skillwarz\" width=\"800\" height=\"600\" frameborder=\"0\" allowfullscreen></iframe>"
+},
+{
+  "_id": {
+    "$oid": "684471546cd9d2b11b112d29"
+  },
+  "game_id": "crazygame_028",
+  "title": "EvoWars.io",
+  "genre": "Multiplayer",
+  "description": "EvoWars.io is a multiplayer .io game where players evolve by collecting orbs and defeating opponents. Grow your warrior and dominate the arena.",
+  "instructions": "Use mouse to move and click to attack. Collect orbs to grow and defeat other players.",
+  "rating": 4.4,
+  "embed_code": "<iframe src=\"https://www.crazygames.com/embed/evowars-io\" width=\"800\" height=\"600\" frameborder=\"0\" allowfullscreen></iframe>"
+},
+{
+  "_id": {
+    "$oid": "684471546cd9d2b11b112d2a"
+  },
+  "game_id": "crazygame_029",
+  "title": "Squid Game Online",
+  "genre": "Arcade",
+  "description": "Squid Game Online brings the popular TV show's challenges to life. Compete in various mini-games inspired by the series and strive to be the last survivor.",
+  "instructions": "Follow on-screen instructions for each mini-game. Use keyboard and mouse controls as required.",
+  "rating": 4.2,
+  "embed_code": "<iframe src=\"https://www.crazygames.com/embed/squid-game-online\" width=\"800\" height=\"600\" frameborder=\"0\" allowfullscreen></iframe>"
+},
+{
+  "_id": {
+    "$oid": "684471546cd9d2b11b112d2b"
+  },
+  "game_id": "crazygame_030",
+  "title": "CubeRealm.io",
+  "genre": "Multiplayer",
+  "description": "CubeRealm.io is a multiplayer sandbox game where players can build, explore, and interact in a blocky 3D world. Create your own realm and invite friends to join.",
+  "instructions": "Use WASD to move, mouse to look around and interact. Press E to open the building menu.",
+  "rating": 4.3,
+  "embed_code": "<iframe src=\"https://www.crazygames.com/embed/cuberealm-io\" width=\"800\" height=\"600\" frameborder=\"0\" allowfullscreen></iframe>"
+},
+{
+  "_id": {
+    "$oid": "6844719c6cd9d2b11b112d2d"
+  },
+  "game_id": "crazygame_031",
+  "title": "Classic Bowling",
+  "genre": "Sports",
+  "description": "Classic Bowling is a straightforward and enjoyable bowling game that captures the essence of the sport. Aim carefully and adjust your power to knock down as many pins as possible.",
+  "instructions": "Use the left and right arrow keys to position your player. Press the space bar to set the power and release to bowl.",
+  "rating": 8.4,
+  "embed_code": "<iframe src=\"https://www.crazygames.com/embed/classic-bowling\" width=\"800\" height=\"600\" frameborder=\"0\" allowfullscreen></iframe>"
+},
+{
+  "_id": {
+    "$oid": "6844719c6cd9d2b11b112d2e"
+  },
+  "game_id": "crazygame_032",
+  "title": "Forward Assault Remix",
+  "genre": "Shooting",
+  "description": "Forward Assault Remix is an exhilarating first-person shooter game from the developers of Bullet Force. This game stands out with fantastic 3D graphics, competitive gameplay, and a fully-fledged clan system.",
+  "instructions": "Use WASD to move, mouse to aim and shoot. Press R to reload and use number keys to switch weapons.",
+  "rating": 9,
+  "embed_code": "<iframe src=\"https://www.crazygames.com/embed/forward-assault\" width=\"800\" height=\"600\" frameborder=\"0\" allowfullscreen></iframe>"
+},
+{
+  "_id": {
+    "$oid": "6844719c6cd9d2b11b112d2f"
+  },
+  "game_id": "crazygame_033",
+  "title": "Cypher - Code Breaker",
+  "genre": "Puzzle",
+  "description": "Cypher - Code Breaker is a brain-teasing logic game where you decipher hidden digits using clever clues and formulas. Each symbol masks a number, and your job is to reveal the correct combination without guessing.",
+  "instructions": "Left-click to interact with the UI. Follow the in-game tutorial for detailed instructions.",
+  "rating": 8.7,
+  "embed_code": "<iframe src=\"https://www.crazygames.com/embed/cypher---code-breaker\" width=\"800\" height=\"600\" frameborder=\"0\" allowfullscreen></iframe>"
+},
+{
+  "_id": {
+    "$oid": "6844719c6cd9d2b11b112d30"
+  },
+  "game_id": "crazygame_034",
+  "title": "Kirka.io",
+  "genre": "Multiplayer",
+  "description": "Kirka.io is an online FPS game with a voxelated art style. Engage in team battles, solo matches, or parkour challenges across various maps. Customize your weapons loadout to suit your playing style.",
+  "instructions": "WASD to move, Space to jump, Left-click to shoot, Right-click/X to aim, Shift to crouch, E to dash, 1-3 to switch weapons.",
+  "rating": 8.5,
+  "embed_code": "<iframe src=\"https://www.crazygames.com/embed/kirka-io\" width=\"800\" height=\"600\" frameborder=\"0\" allowfullscreen></iframe>"
+},
+{
+  "_id": {
+    "$oid": "6844719c6cd9d2b11b112d31"
+  },
+  "game_id": "crazygame_035",
+  "title": "Bitcoin Mining Simulator",
+  "genre": "Simulation",
+  "description": "Bitcoin Mining Simulator allows you to test your skills at becoming a successful Bitcoin miner. Start with a small gift of Bitcoin and work your way up by upgrading your equipment and managing resources.",
+  "instructions": "Click to mine Bitcoin, upgrade your hardware, and expand your mining operations.",
+  "rating": 8.2,
+  "embed_code": "<iframe src=\"https://www.crazygames.com/embed/bitcoin-mining-simulator\" width=\"800\" height=\"600\" frameborder=\"0\" allowfullscreen></iframe>"
+},
+{
+  "_id": {
+    "$oid": "6844719c6cd9d2b11b112d32"
+  },
+  "game_id": "crazygame_036",
+  "title": "Deadshot.io",
+  "genre": "Shooting",
+  "description": "Deadshot.io is a high-octane IO first-person shooter that drops you into nonstop action across a variety of ever-changing maps. Arm yourself with a wide range of weapons and explore multiple game modes.",
+  "instructions": "Use WASD to move, mouse to aim and shoot. Press R to reload and use number keys to switch weapons.",
+  "rating": 8.8,
+  "embed_code": "<iframe src=\"https://www.crazygames.com/embed/deadshot-io\" width=\"800\" height=\"600\" frameborder=\"0\" allowfullscreen></iframe>"
+},
+{
+  "_id": {
+    "$oid": "6844719c6cd9d2b11b112d33"
+  },
+  "game_id": "crazygame_037",
+  "title": "Stone Puzzle Games",
+  "genre": "Puzzle",
+  "description": "Stone Puzzle Game is a brain-teasing experience that blends three unique puzzle styles into one captivating game. Challenge yourself with 'Stone Shoot', 'Stone Connect', and 'Stone Merge' modes.",
+  "instructions": "Follow the in-game instructions for each puzzle mode. Use mouse clicks to interact and solve puzzles.",
+  "rating": 8.6,
+  "embed_code": "<iframe src=\"https://www.crazygames.com/embed/stone-puzzle-games\" width=\"800\" height=\"600\" frameborder=\"0\" allowfullscreen></iframe>"
+},
+{
+  "_id": {
+    "$oid": "6844719c6cd9d2b11b112d34"
+  },
+  "game_id": "crazygame_038",
+  "title": "Narrow One",
+  "genre": "Multiplayer",
+  "description": "Narrow One is a multiplayer archery game set in medieval environments. Protect and capture the flag while firing arrows at your opponents across 14 unique maps featuring castles, forts, and towers.",
+  "instructions": "Use WASD to move, mouse to aim and shoot. Coordinate with your team to capture the flag.",
+  "rating": 9,
+  "embed_code": "<iframe src=\"https://www.crazygames.com/embed/narrow-one\" width=\"800\" height=\"600\" frameborder=\"0\" allowfullscreen></iframe>"
+},
+{
+  "_id": {
+    "$oid": "6844719c6cd9d2b11b112d35"
+  },
+  "game_id": "crazygame_039",
+  "title": "Bullet Force",
+  "genre": "Shooting",
+  "description": "Bullet Force is an excellent FPS game with classic charm. Customize your loadout, choose game modes, and engage in fast-paced shooting action against players worldwide.",
+  "instructions": "Use WASD to move, mouse to aim and shoot. Press R to reload and use number keys to switch weapons.",
+  "rating": 9.1,
+  "embed_code": "<iframe src=\"https://www.crazygames.com/embed/bullet-force-multiplayer\" width=\"800\" height=\"600\" frameborder=\"0\" allowfullscreen></iframe>"
+},
+{
+  "_id": {
+    "$oid": "6844719c6cd9d2b11b112d36"
+  },
+  "game_id": "crazygame_040",
+  "title": "Ships 3D",
+  "genre": "Multiplayer",
+  "description": "Ships 3D brings full-scale online ship battles to the .io games arena. Engage in explosive battles out in the open sea, steer your ship tactically, and gain a positional advantage over your enemies.",
+  "instructions": "Use WASD to move, mouse to look around. Press F to interact with steering, sail, and cannons when standing close to them.",
+  "rating": 9,
+  "embed_code": "<iframe src=\"https://www.crazygames.com/embed/ships-3d\" width=\"800\" height=\"600\" frameborder=\"0\" allowfullscreen></iframe>"
+},
+{
+  "_id": {
+    "$oid": "684471c86cd9d2b11b112d38"
+  },
+  "game_id": "crazygame_041",
+  "title": "Smash Karts",
+  "genre": "Racing",
+  "description": "Smash Karts is a fast-paced multiplayer kart battle game. Drive your kart, collect power-ups, and eliminate other players in chaotic arenas.",
+  "instructions": "Use arrow keys or WASD to drive. Press Space to use power-ups.",
+  "rating": 9.2,
+  "embed_code": "<iframe src=\"https://www.crazygames.com/embed/smash-karts\" width=\"800\" height=\"600\" frameborder=\"0\" allowfullscreen></iframe>"
+},
+{
+  "_id": {
+    "$oid": "684471c86cd9d2b11b112d39"
+  },
+  "game_id": "crazygame_042",
+  "title": "Shell Shockers",
+  "genre": "Shooting",
+  "description": "Shell Shockers is a unique multiplayer FPS game where players control armed eggs. Engage in egg-citing battles using various weapons.",
+  "instructions": "Use WASD to move, mouse to aim and shoot. Press E to swap weapons.",
+  "rating": 9.1,
+  "embed_code": "<iframe src=\"https://www.crazygames.com/embed/shellshockers\" width=\"800\" height=\"600\" frameborder=\"0\" allowfullscreen></iframe>"
+},
+{
+  "_id": {
+    "$oid": "684471c86cd9d2b11b112d3a"
+  },
+  "game_id": "crazygame_043",
+  "title": "Paper.io 2",
+  "genre": "Arcade",
+  "description": "Paper.io 2 is a multiplayer game where you control a colored square to capture territory. Expand your area while avoiding other players.",
+  "instructions": "Use mouse or arrow keys to control your square. Enclose areas to capture them.",
+  "rating": 8.7,
+  "embed_code": "<iframe src=\"https://www.crazygames.com/embed/paper-io-2\" width=\"800\" height=\"600\" frameborder=\"0\" allowfullscreen></iframe>"
+},
+{
+  "_id": {
+    "$oid": "684471c86cd9d2b11b112d3b"
+  },
+  "game_id": "crazygame_044",
+  "title": "Moto X3M",
+  "genre": "Racing",
+  "description": "Moto X3M is an exciting bike racing game with challenging obstacles. Perform stunts and reach the finish line as fast as possible.",
+  "instructions": "Use arrow keys to control the bike. Balance and speed are key to success.",
+  "rating": 9,
+  "embed_code": "<iframe src=\"https://www.crazygames.com/embed/moto-x3m\" width=\"800\" height=\"600\" frameborder=\"0\" allowfullscreen></iframe>"
+},
+{
+  "_id": {
+    "$oid": "684471c86cd9d2b11b112d3c"
+  },
+  "game_id": "crazygame_045",
+  "title": "Voxiom.io",
+  "genre": "Multiplayer",
+  "description": "Voxiom.io is a voxel-based multiplayer FPS game. Build and destroy blocks while battling other players in dynamic environments.",
+  "instructions": "Use WASD to move, mouse to aim and shoot. Press Q to build blocks.",
+  "rating": 8.5,
+  "embed_code": "<iframe src=\"https://www.crazygames.com/embed/voxiom-io\" width=\"800\" height=\"600\" frameborder=\"0\" allowfullscreen></iframe>"
+},
+{
+  "_id": {
+    "$oid": "684471c86cd9d2b11b112d3d"
+  },
+  "game_id": "crazygame_046",
+  "title": "Taming.io",
+  "genre": "Survival",
+  "description": "Taming.io is a survival game where you gather resources, build a base, and tame animals to aid in battles against other players.",
+  "instructions": "Use WASD to move, mouse to interact. Collect resources and tame animals.",
+  "rating": 8.3,
+  "embed_code": "<iframe src=\"https://www.crazygames.com/embed/taming-io\" width=\"800\" height=\"600\" frameborder=\"0\" allowfullscreen></iframe>"
+},
+{
+  "_id": {
+    "$oid": "684471c86cd9d2b11b112d3e"
+  },
+  "game_id": "crazygame_047",
+  "title": "StarBlast",
+  "genre": "Arcade",
+  "description": "StarBlast is a multiplayer arcade shooter set in space. Mine asteroids, upgrade your ship, and battle other players.",
+  "instructions": "Use arrow keys to navigate, spacebar to shoot. Collect gems to upgrade.",
+  "rating": 8.6,
+  "embed_code": "<iframe src=\"https://www.crazygames.com/embed/starblast\" width=\"800\" height=\"600\" frameborder=\"0\" allowfullscreen></iframe>"
+},
+{
+  "_id": {
+    "$oid": "684471c86cd9d2b11b112d3f"
+  },
+  "game_id": "crazygame_048",
+  "title": "Agar.io",
+  "genre": "Arcade",
+  "description": "Agar.io is a classic multiplayer game where you control a cell and consume others to grow larger. Avoid being eaten by bigger cells.",
+  "instructions": "Use mouse to move, spacebar to split. Consume smaller cells to grow.",
+  "rating": 9,
+  "embed_code": "<iframe src=\"https://www.crazygames.com/embed/agar-io\" width=\"800\" height=\"600\" frameborder=\"0\" allowfullscreen></iframe>"
+},
+{
+  "_id": {
+    "$oid": "684471c86cd9d2b11b112d40"
+  },
+  "game_id": "crazygame_049",
+  "title": "Diep.io",
+  "genre": "Shooting",
+  "description": "Diep.io is a multiplayer tank game where you destroy shapes and other players to level up and upgrade your tank.",
+  "instructions": "Use WASD to move, mouse to aim and shoot. Choose upgrades as you level up.",
+  "rating": 8.8,
+  "embed_code": "<iframe src=\"https://www.crazygames.com/embed/diep-io\" width=\"800\" height=\"600\" frameborder=\"0\" allowfullscreen></iframe>"
+},
+{
+  "_id": {
+    "$oid": "684471c86cd9d2b11b112d41"
+  },
+  "game_id": "crazygame_050",
+  "title": "Rocket Bot Royale",
+  "genre": "Shooting",
+  "description": "Rocket Bot Royale is a 2D multiplayer tank battle game. Use rockets to destroy opponents and climb the leaderboard.",
+  "instructions": "Use arrow keys to move, mouse to aim and shoot. Collect coins and power-ups.",
+  "rating": 8.9,
+  "embed_code": "<iframe src=\"https://www.crazygames.com/embed/rocket-bot-royale\" width=\"800\" height=\"600\" frameborder=\"0\" allowfullscreen></iframe>"
+}]
