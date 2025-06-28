@@ -1,4 +1,5 @@
 const Game = require("../models/Game");
+const Genre = require("../models/Genres");
 
 const findAllGames = async (req, res) => {
   try {
@@ -19,7 +20,17 @@ const findGameById = async (req, res) => {
   }
 };
 
+const findAllGenres = async (req, res) => {
+  try {
+    const genres = await Genre.find();
+    res.json(genres);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+};
+
 module.exports = {
   findAllGames,
   findGameById,
+  findAllGenres,
 };
