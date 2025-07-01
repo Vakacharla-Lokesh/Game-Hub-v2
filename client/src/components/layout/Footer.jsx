@@ -1,6 +1,6 @@
-import React from 'react'
-import { FaArrowUp } from 'react-icons/fa';
-
+import React from "react";
+import { FaArrowUp } from "react-icons/fa";
+import ScrollToTopButton from "../ScrollToTopButton";
 
 function Footer() {
   return (
@@ -14,8 +14,8 @@ function Footer() {
               <div
                 key={i}
                 className={`w-4 h-4 ${
-                  i % 2 === 0 ? 'rotate-45' : ''
-                } bg-black`}
+                  i % 2 === 0 ? "rotate-45" : ""
+                } bg-black dark:bg-white`}
               ></div>
             ))}
           </div>
@@ -24,31 +24,46 @@ function Footer() {
 
         {/* About Us */}
         <div>
-          <h2 className="font-semibold mb-4">About Us</h2>
+          <h2 className="font-semibold mb-4 text-2xl">About Us</h2>
           <ul className="space-y-3 text-sm">
-            <li><a href="#">Contact</a></li>
-            <li><a href="#">Team</a></li>
-            <li><a href="#">Help</a></li>
+            <li>
+              <a href="#">Contact</a>
+            </li>
+            <li>
+              <a href="#">Team</a>
+            </li>
+            <li>
+              <a href="#">Help</a>
+            </li>
           </ul>
         </div>
 
         {/* Support */}
         <div>
-          <h2 className="font-semibold mb-4">Support</h2>
+          <h2 className="font-semibold mb-4 text-2xl">Support</h2>
           <ul className="space-y-3 text-sm">
-            <li><a href="#">Contact</a></li>
-            <li><a href="#">Refund Policy</a></li>
-            <li><a href="#">FAQ's</a></li>
+            <li>
+              <a href="#">Contact</a>
+            </li>
+            <li>
+              <a href="#">FAQ's</a>
+            </li>
           </ul>
         </div>
 
         {/* Social */}
         <div>
-          <h2 className="font-semibold mb-4">Social</h2>
+          <h2 className="font-semibold mb-4 text-2xl">Social</h2>
           <ul className="space-y-3 text-sm">
-            <li><a href="#">Instagram</a></li>
-            <li><a href="#">LinkedIn</a></li>
-            <li><a href="#">YouTube</a></li>
+            <li>
+              <a href="#">Instagram</a>
+            </li>
+            <li>
+              <a href="#">LinkedIn</a>
+            </li>
+            <li>
+              <a href="#">YouTube</a>
+            </li>
           </ul>
         </div>
       </div>
@@ -57,15 +72,16 @@ function Footer() {
       <div className="border-t border-black my-8"></div>
 
       {/* Bottom bar */}
-      <div className="flex flex-col md:flex-row justify-between items-center text-sm text-black">
-        <p>© {new Date().getFullYear()} ClosetNow</p>
-        <p>Terms of Service</p>
-        <a href="#" className="flex items-center gap-1 hover:underline">
-          Back to top <FaArrowUp size={12} />
-        </a>
+      <div className="flex flex-col md:flex-row justify-center items-center text-sm text-black dark:text-white">
+        <div className="flex flex-col items-center justify-center">
+          <p className="text-xl">© {new Date().getFullYear()} ClosetNow</p>
+          <p>Terms of Service</p>
+        </div>
       </div>
+
+      <ScrollToTopButton />
     </footer>
   );
 }
 
-export default Footer
+export default Footer;

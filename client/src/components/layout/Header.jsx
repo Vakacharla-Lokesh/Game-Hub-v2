@@ -81,9 +81,7 @@ function Header() {
 
                 {userDropdownOpen && (
                   <div className="absolute right-5 max-md:top-12 mt-2 w-48 bg-white rounded-lg shadow-lg py-2 dark:bg-gray-800 z-50">
-                    <a
-                      className="block px-4 py-2 text-gray-700 hover:bg-gray-100 dark:text-white dark:hover:bg-gray-600"
-                    >
+                    <a className="block px-4 py-2 text-gray-700 hover:bg-gray-100 dark:text-white dark:hover:bg-gray-600">
                       Dashboard
                     </a>
 
