@@ -25,7 +25,6 @@ function LoginPage() {
         className="absolute inset-0 w-full h-full bg-cover bg-center bg-no-repeat"
         style={{ backgroundImage: "url('/assets/images/ApexLegends.jpg')" }}
       />
-      
       {/* Right-aligned Form Container */}
       <div className="relative z-10 h-full flex items-center justify-end pr-20">
         <div className="bg-black/70 p-8 rounded-lg w-full max-w-md">
