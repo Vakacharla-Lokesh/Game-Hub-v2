@@ -2,6 +2,8 @@ import React, { useState, useEffect, useRef } from "react";
 import { allGames, getGenres } from "../../api/GameService";
 import Sidebar from "../Sidebar";
 import Footer from "../layout/Footer";
+
+
 import {
   ChevronRight,
   Star,
@@ -24,6 +26,7 @@ import Play from "../Play";
 const genres = getGenres();
 
 const categories = [
+ 
   "Trending Now",
   "New Releases",
   "Popular This Week",
@@ -182,6 +185,7 @@ export default function Game() {
         onCategoryClick={handleCategoryClick}
         selectedGenre={selectedGenre}
         selectedCategory={selectedCategory}
+        
       />
 
       <main className="flex-1 overflow-auto relative z-10">
@@ -320,10 +324,10 @@ export default function Game() {
             {!selectedGenre && !selectedCategory && (
               <div className="flex items-center gap-3 mb-6">
                 <Crown className="w-8 h-8 text-purple-400" />
-                <h2 className="text-3xl font-bold bg-gradient-to-r from-purple-400 to-violet-400 bg-clip-text text-transparent">
+                <h2 className="text-3xl font-bold bg-gradient-to-r from-yellow-400 to-yellow-600 bg-clip-text text-transparent">
                   All Games
                 </h2>
-                <div className="flex-1 h-px bg-gradient-to-r from-purple-400 to-transparent"></div>
+                <div className="flex-1 h-px bg-gradient-to-r from-yellow-400 to-yellow-600 to-transparent"></div>
               </div>
             )}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
@@ -341,7 +345,7 @@ export default function Game() {
           </section>
         </div>
 
-        <Footer />
+       <Footer className="fixed bottom-0 left-0 w-full z-50" />
       </main>
     </div>
   );
@@ -362,7 +366,7 @@ function GameCard({ game, onPlay }) {
           onClick={() => onPlay(game)}
           className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 bg-black/40 backdrop-blur-sm"
         >
-          <div className="bg-gradient-to-r from-purple-500 to-violet-500 text-white rounded-full p-4 hover:from-purple-400 hover:to-violet-400 hover:scale-110 transition-all duration-200 shadow-lg border border-purple-400/50">
+          <div className="bg-gradient-to-r from-yellow-400 to-yellow-600 text-white rounded-full p-4 hover:from-purple-400 hover:to-violet-400 hover:scale-110 transition-all duration-200 shadow-lg border border-purple-400/50">
             <Play className="w-8 h-8" fill="currentColor" />
           </div>
         </button>
@@ -391,7 +395,7 @@ function GameCard({ game, onPlay }) {
         <div className="absolute inset-0 bg-gradient-to-r from-purple-500/5 to-violet-500/5 rounded-b-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
         
         <div className="relative z-10">
-          <h3 className="font-bold text-lg bg-gradient-to-r from-purple-400 to-violet-400 bg-clip-text text-transparent mb-2 group-hover:from-purple-300 group-hover:to-violet-300 transition-all truncate">
+          <h3 className="font-bold text-lg bg-gradient-to-r from-yellow-400 to-yellow-600 bg-clip-text text-transparent mb-2 group-hover:from-purple-300 group-hover:to-violet-300 transition-all truncate">
             {game.title}
           </h3>
           <p className="text-gray-400 text-sm mb-3 line-clamp-2">
