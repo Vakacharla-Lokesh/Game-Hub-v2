@@ -1,6 +1,6 @@
-const mongoose = require("mongoose");
+const { Schema, model } = require("mongoose");
 
-const gameSchema = new mongoose.Schema(
+const gameSchema = new Schema(
   {
     game_id: { type: String, required: true, unique: true },
     title: String,
@@ -11,6 +11,6 @@ const gameSchema = new mongoose.Schema(
     embed_code: String,
   },
   { collection: "games" }
-); // 👈 match the collection name exactly!
+);
 
-module.exports = mongoose.model("Game", gameSchema);
+module.exports = model("Game", gameSchema);

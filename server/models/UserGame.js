@@ -1,5 +1,4 @@
-const mongoose = require("mongoose");
-const Schema = mongoose.Schema;
+const { Schema, model } = require("mongoose");
 
 const UserGameSchema = new Schema({
   userId: { type: Schema.Types.ObjectId, ref: "User", required: true },
@@ -8,4 +7,4 @@ const UserGameSchema = new Schema({
   lastPlayed: { type: Date, default: Date.now },
 });
 
-module.exports = mongoose.model("UserGame", UserGameSchema);
+module.exports = model("UserGame", UserGameSchema);

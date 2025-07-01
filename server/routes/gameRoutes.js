@@ -1,7 +1,15 @@
 const express = require("express");
 const router = express.Router();
 
-const { findAllGames, findGameById } = require("../controllers/gameController");
+const {
+  findAllGames,
+  findGameById,
+  findAllGenres,
+} = require("../controllers/gameController");
+
+// GET GAME GENRES
+router.get("/genres", findAllGenres);
+
 // GET all games — now at /api/games/all
 router.get("/all", findAllGames);
 
