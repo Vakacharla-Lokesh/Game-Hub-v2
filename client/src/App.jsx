@@ -24,7 +24,7 @@ function App() {
           element={<HomePage />}
         />
         <Route
-          path="/games/:id"
+          path="/game/:id"
           element={<GameInfo />}
         />
         <Route
