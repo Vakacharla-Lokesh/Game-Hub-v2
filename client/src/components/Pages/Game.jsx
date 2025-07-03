@@ -363,7 +363,7 @@ export default function Game() {
             {!selectedGenre && !selectedCategory && (
               <div className="flex items-center gap-3 mb-6">
                 <Crown className="w-8 h-8 text-purple-400" />
-                <h2 className="text-3xl font-bold bg-gradient-to-r from-yellow-400 to-yellow-600 bg-clip-text text-transparent">
+                <h2 className="text-3xl font-bold bg-gradient-to-r from-purple-400 to-violet-400 bg-clip-text text-transparent">
                   All Games
                 </h2>
                 <div className="flex-1 h-px bg-gradient-to-r from-yellow-400 to-yellow-600 to-transparent"></div>
