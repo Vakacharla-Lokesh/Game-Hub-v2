@@ -16,6 +16,8 @@ import {
 export default function GameInfo() {
   const { id } = useParams();
   const [game, setGame] = useState(null);
+  const { id } = useParams();
+  const [game, setGame] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
@@ -79,6 +81,22 @@ export default function GameInfo() {
           <div className="text-5xl mb-4">🎮</div>
           <p className="text-xl font-semibold">Game not found.</p>
         </div>
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-black text-red-400">
+        ❌ {error}
+      </div>
+    );
+  }
+
+  if (!game) {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-black text-yellow-400">
+        Game not found.
       </div>
     );
   }
