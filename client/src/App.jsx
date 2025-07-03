@@ -8,6 +8,7 @@ import LandingPage from "./components/Pages/LandingPage.jsx";
 import Game from "./components/Pages/Game.jsx";
 import FAQ from "./components/Support Pages/FAQ.jsx";
 import ContactPage from "./components/Support Pages/ContactPage.jsx";
+import HelpForm from "./components/Pages/help.jsx";
 
 function App() {
   return (
@@ -48,6 +49,12 @@ function App() {
           path="/contact"
           element={<ContactPage />}
         />
+
+        <Route 
+          path="/help" 
+          element={<HelpForm />} 
+          />
+
       </Routes>
     </BrowserRouter>
   );
