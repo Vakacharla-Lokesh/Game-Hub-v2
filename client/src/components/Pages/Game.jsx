@@ -2,31 +2,24 @@ import React, { useState, useEffect, useRef } from "react";
 import { allGames, getGenres, getGamePerGenres } from "../../api/GameService";
 import Sidebar from "../Sidebar";
 import Footer from "../layout/Footer";
-
+import { useNavigate } from "react-router-dom";
 
 import {
   ChevronRight,
   Star,
   TrendingUp,
-  Gamepad2,
-  Zap,
   Crown,
-  Target,
-  Sword,
-  Car,
-  Puzzle,
-  Music,
   Sparkles,
   Play as PlayIcon,
   Volume2,
   VolumeX,
 } from "lucide-react";
 import Play from "../Play";
+import GameCard from "../GameCard";
 
 const genres = getGenres();
 
 const categories = [
- 
   "Trending Now",
   "New Releases",
   "Popular This Week",
@@ -42,27 +35,33 @@ const featuredTrailers = [
   {
     id: 1,
     title: "Epic Adventure Quest",
-    videoUrl: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",
+    videoUrl:
+      "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",
     thumbnail: "https://picsum.photos/1920/1080?random=1",
-    description: "Embark on the ultimate adventure in this stunning open-world RPG"
+    description:
+      "Embark on the ultimate adventure in this stunning open-world RPG",
   },
   {
     id: 2,
     title: "Cyberpunk Racing",
-    videoUrl: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4",
+    videoUrl:
+      "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4",
     thumbnail: "https://picsum.photos/1920/1080?random=2",
-    description: "High-speed racing in a neon-lit cyberpunk world"
+    description: "High-speed racing in a neon-lit cyberpunk world",
   },
   {
     id: 3,
     title: "Space Warriors",
-    videoUrl: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4",
+    videoUrl:
+      "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4",
     thumbnail: "https://picsum.photos/1920/1080?random=3",
-    description: "Epic space battles await in this action-packed shooter"
-  }
+    description: "Epic space battles await in this action-packed shooter",
+  },
 ];
 
 export default function Game() {
+  const navigate = useNavigate();
+
   const [games, setGames] = useState([]);
   const [loading, setLoading] = useState(true);
   const [selectedGenre, setSelectedGenre] = useState(null);
@@ -133,6 +132,7 @@ export default function Game() {
 
   const handlePlay = (game) => {
     console.log("Playing game:", game);
+    navigate(`/game/${game.game_id}`);
   };
 
   const handleGenreClick = (genre) => {
@@ -174,10 +174,13 @@ export default function Game() {
 
       {/* Geometric pattern overlay */}
       <div className="fixed inset-0 opacity-5 pointer-events-none">
-        <div style={{
-          backgroundImage: `radial-gradient(circle at 2px 2px, purple 1px, transparent 0)`,
-          backgroundSize: '40px 40px'
-        }} className="w-full h-full"></div>
+        <div
+          style={{
+            backgroundImage: `radial-gradient(circle at 2px 2px, purple 1px, transparent 0)`,
+            backgroundSize: "40px 40px",
+          }}
+          className="w-full h-full"
+        ></div>
       </div>
 
       <Sidebar
@@ -185,7 +188,6 @@ export default function Game() {
         onCategoryClick={handleCategoryClick}
         selectedGenre={selectedGenre}
         selectedCategory={selectedCategory}
-        
       />
 
       <main className="flex-1 overflow-auto relative z-10">
@@ -202,7 +204,10 @@ export default function Game() {
                 loop
                 playsInline
               >
-                <source src={currentTrailer.videoUrl} type="video/mp4" />
+                <source
+                  src={currentTrailer.videoUrl}
+                  type="video/mp4"
+                />
                 <img
                   src={currentTrailer.thumbnail}
                   alt={currentTrailer.title}
@@ -219,7 +224,11 @@ export default function Game() {
                 onClick={() => setIsMuted(!isMuted)}
                 className="bg-black/50 backdrop-blur-sm text-white p-3 rounded-full hover:bg-black/70 transition-all duration-300 border border-purple-500/30"
               >
-                {isMuted ? <VolumeX className="w-5 h-5" /> : <Volume2 className="w-5 h-5" />}
+                {isMuted ? (
+                  <VolumeX className="w-5 h-5" />
+                ) : (
+                  <Volume2 className="w-5 h-5" />
+                )}
               </button>
             </div>
 
@@ -231,8 +240,8 @@ export default function Game() {
                   onClick={() => setCurrentTrailerIndex(index)}
                   className={`w-3 h-3 rounded-full transition-all duration-300 ${
                     index === currentTrailerIndex
-                      ? 'bg-purple-400 scale-125'
-                      : 'bg-white/50 hover:bg-white/80'
+                      ? "bg-purple-400 scale-125"
+                      : "bg-white/50 hover:bg-white/80"
                   }`}
                 />
               ))}
@@ -256,7 +265,10 @@ export default function Game() {
                     onClick={() => handlePlay(currentTrailer)}
                     className="bg-gradient-to-r from-purple-600 to-violet-600 text-white font-bold px-8 py-4 rounded-full hover:from-purple-500 hover:to-violet-500 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-purple-500/50 border border-purple-400/50"
                   >
-                    <PlayIcon className="w-6 h-6 inline mr-2" fill="currentColor" />
+                    <PlayIcon
+                      className="w-6 h-6 inline mr-2"
+                      fill="currentColor"
+                    />
                     Play Now
                   </button>
                   <button className="bg-black/30 backdrop-blur-sm text-white font-bold px-8 py-4 rounded-full hover:bg-black/50 transition-all duration-300 border border-purple-400/30">
@@ -279,7 +291,10 @@ export default function Game() {
           )}
 
           {!selectedGenre && !selectedCategory && trendingGames.length > 0 && (
-            <section ref={trendingRef} className="mb-12">
+            <section
+              ref={trendingRef}
+              className="mb-12"
+            >
               <div className="flex items-center gap-3 mb-6">
                 <TrendingUp className="w-8 h-8 text-red-400" />
                 <h2 className="text-3xl font-bold bg-gradient-to-r from-purple-400 to-violet-400 bg-clip-text text-transparent">
@@ -300,7 +315,10 @@ export default function Game() {
           )}
 
           {!selectedGenre && !selectedCategory && newGames.length > 0 && (
-            <section ref={newReleasesRef} className="mb-12">
+            <section
+              ref={newReleasesRef}
+              className="mb-12"
+            >
               <div className="flex items-center gap-3 mb-6">
                 <Sparkles className="w-8 h-8 text-green-400" />
                 <h2 className="text-3xl font-bold bg-gradient-to-r from-purple-400 to-violet-400 bg-clip-text text-transparent">
@@ -345,76 +363,8 @@ export default function Game() {
           </section>
         </div>
 
-       <Footer className="fixed bottom-0 left-0 w-full z-50" />
+        <Footer className="fixed bottom-0 left-0 w-full z-50" />
       </main>
-    </div>
-  );
-}
-
-function GameCard({ game, onPlay }) {
-  return (
-    <div className="group relative bg-gradient-to-br from-gray-900 to-black rounded-xl overflow-hidden shadow-lg hover:shadow-2xl hover:shadow-yellow-500/20 transition-all duration-300 hover:-translate-y-2 border border-gray-800 hover:border-yellow-500/50 backdrop-blur-sm">
-      <div className="relative overflow-hidden">
-        <img
-          src={game.image_url}
-          alt={game.title}
-          className="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-500"
-        />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-purple-900/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-
-        <button
-          onClick={() => onPlay(game)}
-          className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 bg-black/40 backdrop-blur-sm"
-        >
-          <div className="bg-gradient-to-r from-yellow-400 to-yellow-600 text-white rounded-full p-4 hover:from-purple-400 hover:to-violet-400 hover:scale-110 transition-all duration-200 shadow-lg border border-purple-400/50">
-            <Play className="w-8 h-8" fill="currentColor" />
-          </div>
-        </button>
-
-        <div className="absolute top-3 left-3 flex gap-2">
-          {game.isHot && (
-            <span className="bg-gradient-to-r from-red-500 to-pink-500 text-white text-xs px-3 py-1 rounded-full font-bold animate-pulse border border-red-400/50">
-              🔥 HOT
-            </span>
-          )}
-          {game.isNew && (
-            <span className="bg-gradient-to-r from-green-500 to-emerald-500 text-white text-xs px-3 py-1 rounded-full font-bold border border-green-400/50">
-              ✨ NEW
-            </span>
-          )}
-        </div>
-
-        <div className="absolute top-3 right-3 bg-black/70 backdrop-blur-sm rounded-full px-3 py-1 flex items-center gap-1 border border-purple-400/30">
-          <Star className="w-3 h-3 text-yellow-400" fill="currentColor" />
-          <span className="text-white text-xs font-bold">{game.rating}</span>
-        </div>
-      </div>
-
-      <div className="p-4 relative">
-        {/* Subtle glow effect */}
-        <div className="absolute inset-0 bg-gradient-to-r from-purple-500/5 to-violet-500/5 rounded-b-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-        
-        <div className="relative z-10">
-          <h3 className="font-bold text-lg bg-gradient-to-r from-yellow-400 to-yellow-600 bg-clip-text text-transparent mb-2 group-hover:from-purple-300 group-hover:to-violet-300 transition-all truncate">
-            {game.title}
-          </h3>
-          <p className="text-gray-400 text-sm mb-3 line-clamp-2">
-            {game.description}
-          </p>
-          <div className="flex items-center justify-between">
-            <span className="bg-gradient-to-r from-purple-500/20 to-violet-500/20 text-purple-300 px-3 py-1 rounded-full text-xs font-semibold border border-purple-500/30">
-              {game.genre}
-            </span>
-            <button
-              onClick={() => onPlay(game)}
-              className="text-purple-400 hover:text-purple-300 font-semibold text-sm hover:underline transition-colors flex items-center gap-1"
-            >
-              Play Now
-              <ChevronRight className="w-3 h-3" />
-            </button>
-          </div>
-        </div>
-      </div>
     </div>
   );
 }

@@ -1,9 +1,23 @@
-import { gameById } from "../../api/GameService";
-import Sidebar from '../Sidebar';
-import Footer from '../layout/Footer';
-import React, { useState, useEffect, useRef } from 'react';
-import { ChevronRight, Play, Star, TrendingUp, Gamepad2, Zap, 
-  Crown, Target, Sword, Car, Puzzle, Music, Sparkles } from 'lucide-react';
+import { gameById, getGenres } from "../../api/GameService";
+import Sidebar from "../Sidebar";
+import Footer from "../layout/Footer";
+import React, { useState, useEffect, useRef } from "react";
+import {
+  ChevronRight,
+  Play,
+  Star,
+  TrendingUp,
+  Gamepad2,
+  Zap,
+  Crown,
+  Target,
+  Sword,
+  Car,
+  Puzzle,
+  Music,
+  Sparkles,
+} from "lucide-react";
+import GameCard from "../GameCard";
 
 // const gameById = async (id) => {
 //   await new Promise((resolve) => setTimeout(resolve, 500));
@@ -20,90 +34,18 @@ import { ChevronRight, Play, Star, TrendingUp, Gamepad2, Zap,
 //     isNew: Math.random() > 0.8
 //   };
 // };
-const genres = [
-  { name: 'Action', icon: Zap, count: 156 },
-  { name: 'Adventure', icon: Crown, count: 89 },
-  { name: 'Puzzle', icon: Puzzle, count: 134 },
-  { name: 'Racing', icon: Car, count: 67 },
-  { name: 'Shooting', icon: Target, count: 98 },
-  { name: 'RPG', icon: Sword, count: 45 },
-  { name: 'Music', icon: Music, count: 23 },
-  { name: 'Sports', icon: Gamepad2, count: 78 }
-];
+const genres = getGenres();
 
 const categories = [
-  'Trending Now',
-  'New Releases',
-  'Popular This Week',
-  'Editor\'s Choice',
-  'Multiplayer',
-  'Single Player',
-  'Free to Play',
-  'Premium Games'
+  "Trending Now",
+  "New Releases",
+  "Popular This Week",
+  "Editor's Choice",
+  "Multiplayer",
+  "Single Player",
+  "Free to Play",
+  "Premium Games",
 ];
-
-function GameCard({ game, onPlay }) {
-  return (
-    <div className="group relative bg-gradient-to-br from-gray-900 to-black rounded-xl overflow-hidden shadow-lg hover:shadow-2xl hover:shadow-yellow-500/20 transition-all duration-300 hover:-translate-y-2 border border-gray-800 hover:border-yellow-500/50">
-      <div className="relative overflow-hidden">
-        <img 
-          src={game.thumbnail} 
-          alt={game.title}
-          className="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-500"
-        />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-        
-        {/* Play Button Overlay */}
-        <button
-          onClick={() => onPlay(game)}
-          className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 bg-black/40 backdrop-blur-sm"
-        >
-          <div className="bg-yellow-500 text-black rounded-full p-4 hover:bg-yellow-400 hover:scale-110 transition-all duration-200 shadow-lg">
-            <Play className="w-8 h-8" fill="currentColor" />
-          </div>
-        </button>
-
-        {/* Badges */}
-        <div className="absolute top-3 left-3 flex gap-2">
-          {game.isHot && (
-            <span className="bg-red-500 text-white text-xs px-2 py-1 rounded-full font-bold animate-pulse">
-              🔥 HOT
-            </span>
-          )}
-          {game.isNew && (
-            <span className="bg-green-500 text-white text-xs px-2 py-1 rounded-full font-bold">
-              ✨ NEW
-            </span>
-          )}
-        </div>
-
-        {/* Rating */}
-        <div className="absolute top-3 right-3 bg-black/70 backdrop-blur-sm rounded-full px-2 py-1 flex items-center gap-1">
-          <Star className="w-3 h-3 text-yellow-400" fill="currentColor" />
-          <span className="text-white text-xs font-bold">{game.rating}</span>
-        </div>
-      </div>
-
-      <div className="p-4">
-        <h3 className="font-bold text-lg text-yellow-400 mb-2 group-hover:text-yellow-300 transition-colors truncate">
-          {game.title}
-        </h3>
-        <p className="text-gray-400 text-sm mb-3 line-clamp-2">{game.description}</p>
-        <div className="flex items-center justify-between">
-          <span className="bg-yellow-500/20 text-yellow-400 px-3 py-1 rounded-full text-xs font-semibold border border-yellow-500/30">
-            {game.genre}
-          </span>
-          <button
-            onClick={() => onPlay(game)}
-            className="text-yellow-400 hover:text-yellow-300 font-semibold text-sm hover:underline transition-colors"
-          >
-            Play Now →
-          </button>
-        </div>
-      </div>
-    </div>
-  );
-}
 
 export default function GameInfo() {
   const [games, setGames] = useState([]);
@@ -111,7 +53,7 @@ export default function GameInfo() {
   const [selectedGenre, setSelectedGenre] = useState(null);
   const [selectedCategory, setSelectedCategory] = useState(null);
   const [featuredGame, setFeaturedGame] = useState(null);
-  
+
   const trendingRef = useRef(null);
   const newReleasesRef = useRef(null);
   const popularRef = useRef(null);
@@ -124,12 +66,14 @@ export default function GameInfo() {
     setLoading(true);
     try {
       // Load multiple games
-      const gamePromises = Array.from({ length: 24 }, (_, i) => gameById(i + 1));
+      const gamePromises = Array.from({ length: 24 }, (_, i) =>
+        gameById(i + 1)
+      );
       const gameData = await Promise.all(gamePromises);
       setGames(gameData);
       setFeaturedGame(gameData[0]);
     } catch (error) {
-      console.error('Error loading games:', error);
+      console.error("Error loading games:", error);
     } finally {
       setLoading(false);
     }
@@ -137,7 +81,7 @@ export default function GameInfo() {
 
   const handlePlay = (game) => {
     // Navigate to game detail page or open game modal
-    console.log('Playing game:', game);
+    console.log("Playing game:", game);
   };
 
   const handleGenreClick = (genre) => {
@@ -148,24 +92,24 @@ export default function GameInfo() {
   const handleCategoryClick = (category) => {
     setSelectedCategory(selectedCategory === category ? null : category);
     setSelectedGenre(null);
-    
+
     // Scroll to relevant section
-    if (category === 'Trending Now' && trendingRef.current) {
-      trendingRef.current.scrollIntoView({ behavior: 'smooth' });
-    } else if (category === 'New Releases' && newReleasesRef.current) {
-      newReleasesRef.current.scrollIntoView({ behavior: 'smooth' });
-    } else if (category === 'Popular This Week' && popularRef.current) {
-      popularRef.current.scrollIntoView({ behavior: 'smooth' });
+    if (category === "Trending Now" && trendingRef.current) {
+      trendingRef.current.scrollIntoView({ behavior: "smooth" });
+    } else if (category === "New Releases" && newReleasesRef.current) {
+      newReleasesRef.current.scrollIntoView({ behavior: "smooth" });
+    } else if (category === "Popular This Week" && popularRef.current) {
+      popularRef.current.scrollIntoView({ behavior: "smooth" });
     }
   };
 
-  const filteredGames = games.filter(game => {
+  const filteredGames = games.filter((game) => {
     if (selectedGenre) return game.genre === selectedGenre;
     return true;
   });
 
-  const trendingGames = games.filter(game => game.isHot).slice(0, 8);
-  const newGames = games.filter(game => game.isNew).slice(0, 6);
+  const trendingGames = games.filter((game) => game.isHot).slice(0, 8);
+  const newGames = games.filter((game) => game.isNew).slice(0, 6);
   const popularGames = games.slice(0, 12);
 
   if (loading) {
@@ -175,7 +119,9 @@ export default function GameInfo() {
         <div className="flex-1 flex items-center justify-center">
           <div className="text-center">
             <div className="w-16 h-16 border-4 border-yellow-400 border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
-            <p className="text-yellow-400 text-xl font-semibold">Loading Epic Games...</p>
+            <p className="text-yellow-400 text-xl font-semibold">
+              Loading Epic Games...
+            </p>
           </div>
         </div>
       </div>
@@ -184,20 +130,20 @@ export default function GameInfo() {
 
   return (
     <div className="flex min-h-screen bg-black text-white">
-      <Sidebar 
+      <Sidebar
         onGenreClick={handleGenreClick}
         onCategoryClick={handleCategoryClick}
         selectedGenre={selectedGenre}
         selectedCategory={selectedCategory}
       />
-      
+
       <main className="flex-1 overflow-auto">
         {/* Hero Section */}
         {featuredGame && !selectedGenre && !selectedCategory && (
           <section className="relative h-96 overflow-hidden mb-12">
             <div className="absolute inset-0">
-              <img 
-                src={featuredGame.thumbnail} 
+              <img
+                src={featuredGame.thumbnail}
                 alt={featuredGame.title}
                 className="w-full h-full object-cover"
               />
@@ -215,7 +161,10 @@ export default function GameInfo() {
                   onClick={() => handlePlay(featuredGame)}
                   className="bg-gradient-to-r from-yellow-500 to-orange-500 text-black font-bold px-8 py-4 rounded-full hover:from-yellow-400 hover:to-orange-400 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-yellow-500/50"
                 >
-                  <Play className="w-6 h-6 inline mr-2" fill="currentColor" />
+                  <Play
+                    className="w-6 h-6 inline mr-2"
+                    fill="currentColor"
+                  />
                   Play Now
                 </button>
               </div>
@@ -236,15 +185,24 @@ export default function GameInfo() {
 
           {/* Trending Section */}
           {!selectedGenre && !selectedCategory && trendingGames.length > 0 && (
-            <section ref={trendingRef} className="mb-12">
+            <section
+              ref={trendingRef}
+              className="mb-12"
+            >
               <div className="flex items-center gap-3 mb-6">
                 <TrendingUp className="w-8 h-8 text-red-500" />
-                <h2 className="text-3xl font-bold text-yellow-400">Trending Now</h2>
+                <h2 className="text-3xl font-bold text-yellow-400">
+                  Trending Now
+                </h2>
                 <div className="flex-1 h-px bg-gradient-to-r from-red-500 to-transparent"></div>
               </div>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-                {trendingGames.map(game => (
-                  <GameCard key={`trending-${game.id}`} game={game} onPlay={handlePlay} />
+                {trendingGames.map((game) => (
+                  <GameCard
+                    key={`trending-${game.id}`}
+                    game={game}
+                    onPlay={handlePlay}
+                  />
                 ))}
               </div>
             </section>
@@ -252,15 +210,24 @@ export default function GameInfo() {
 
           {/* New Releases Section */}
           {!selectedGenre && !selectedCategory && newGames.length > 0 && (
-            <section ref={newReleasesRef} className="mb-12">
+            <section
+              ref={newReleasesRef}
+              className="mb-12"
+            >
               <div className="flex items-center gap-3 mb-6">
                 <Sparkles className="w-8 h-8 text-green-500" />
-                <h2 className="text-3xl font-bold text-yellow-400">New Releases</h2>
+                <h2 className="text-3xl font-bold text-yellow-400">
+                  New Releases
+                </h2>
                 <div className="flex-1 h-px bg-gradient-to-r from-green-500 to-transparent"></div>
               </div>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {newGames.map(game => (
-                  <GameCard key={`new-${game.id}`} game={game} onPlay={handlePlay} />
+                {newGames.map((game) => (
+                  <GameCard
+                    key={`new-${game.id}`}
+                    game={game}
+                    onPlay={handlePlay}
+                  />
                 ))}
               </div>
             </section>
@@ -271,13 +238,22 @@ export default function GameInfo() {
             {!selectedGenre && !selectedCategory && (
               <div className="flex items-center gap-3 mb-6">
                 <Crown className="w-8 h-8 text-yellow-500" />
-                <h2 className="text-3xl font-bold text-yellow-400">All Games</h2>
+                <h2 className="text-3xl font-bold text-yellow-400">
+                  All Games
+                </h2>
                 <div className="flex-1 h-px bg-gradient-to-r from-yellow-500 to-transparent"></div>
               </div>
             )}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-              {(selectedGenre || selectedCategory ? filteredGames : popularGames).map(game => (
-                <GameCard key={game.id} game={game} onPlay={handlePlay} />
+              {(selectedGenre || selectedCategory
+                ? filteredGames
+                : popularGames
+              ).map((game) => (
+                <GameCard
+                  key={game.id}
+                  game={game}
+                  onPlay={handlePlay}
+                />
               ))}
             </div>
           </section>

@@ -6,6 +6,8 @@ import HomePage from "./components/Pages/HomePage.jsx";
 import GameInfo from "./components/Pages/GameInfo.jsx";
 import LandingPage from "./components/Pages/LandingPage.jsx";
 import Game from "./components/Pages/Game.jsx";
+import FAQ from "./components/Support Pages/FAQ.jsx";
+import ContactPage from "./components/Support Pages/ContactPage.jsx";
 
 function App() {
   return (
@@ -31,9 +33,21 @@ function App() {
           path="/"
           element={<LandingPage />}
         />
-        <Route 
-        path="/games" 
-        element={<Game />} />
+        <Route
+          path="/games"
+          element={<Game />}
+        />
+
+        {/* SUPPORT PAGE ROUTES */}
+        <Route
+          path="/faqs"
+          element={<FAQ />}
+        />
+
+        <Route
+          path="/contact"
+          element={<ContactPage />}
+        />
       </Routes>
     </BrowserRouter>
   );
