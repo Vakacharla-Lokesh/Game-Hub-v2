@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useCallback } from "react";
 import { allGames, getGenres, getGamePerGenres } from "../../api/GameService";
 import Sidebar from "../Sidebar";
 import Footer from "../layout/Footer";
@@ -10,11 +10,10 @@ import {
   TrendingUp,
   Crown,
   Sparkles,
-  Play as PlayIcon,
+  Play,
   Volume2,
   VolumeX,
 } from "lucide-react";
-import Play from "../Play";
 import GameCard from "../GameCard";
 
 const genres = getGenres();
@@ -69,6 +68,7 @@ export default function Game() {
   const [featuredGame, setFeaturedGame] = useState(null);
   const [currentTrailerIndex, setCurrentTrailerIndex] = useState(0);
   const [isMuted, setIsMuted] = useState(true);
+  const [visibleCount, setVisibleCount] = useState(12);
 
   const trendingRef = useRef(null);
   const newReleasesRef = useRef(null);
@@ -101,6 +101,27 @@ export default function Game() {
       setLoading(false);
     }
   };
+
+  // Infinite scroll handler
+  const handleScroll = useCallback(() => {
+    if (
+      window.innerHeight + window.scrollY >=
+      document.body.offsetHeight - 300 // 300px from bottom
+    ) {
+      setVisibleCount((prev) => {
+        // Only load more if there are more games to show
+        if (prev < games.length) {
+          return Math.min(prev + 12, games.length);
+        }
+        return prev;
+      });
+    }
+  }, [games.length]);
+
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [handleScroll]);
 
   if (loading) {
     return (
@@ -159,7 +180,8 @@ export default function Game() {
 
   const trendingGames = games.filter((g) => g.isHot).slice(0, 8);
   const newGames = games.filter((g) => g.isNew).slice(0, 6);
-  const popularGames = games.slice(0, 12);
+  // For "All Games" section, show only up to visibleCount games
+  const popularGames = games.slice(0, visibleCount);
 
   const currentTrailer = featuredTrailers[currentTrailerIndex];
 
@@ -192,93 +214,92 @@ export default function Game() {
 
       <main className="flex-1 overflow-auto relative z-10">
         {/* Video Trailer Section */}
-        {!selectedGenre && !selectedCategory && (
-          <section className="relative h-[70vh] overflow-hidden mb-12">
-            <div className="absolute inset-0">
-              <video
-                ref={videoRef}
-                key={currentTrailer.id}
+
+        <section className="relative h-[70vh] overflow-hidden mb-12">
+          <div className="absolute inset-0">
+            <video
+              ref={videoRef}
+              key={currentTrailer.id}
+              className="w-full h-full object-cover"
+              autoPlay
+              muted={isMuted}
+              loop
+              playsInline
+            >
+              <source
+                src={currentTrailer.videoUrl}
+                type="video/mp4"
+              />
+              <img
+                src={currentTrailer.thumbnail}
+                alt={currentTrailer.title}
                 className="w-full h-full object-cover"
-                autoPlay
-                muted={isMuted}
-                loop
-                playsInline
-              >
-                <source
-                  src={currentTrailer.videoUrl}
-                  type="video/mp4"
-                />
-                <img
-                  src={currentTrailer.thumbnail}
-                  alt={currentTrailer.title}
-                  className="w-full h-full object-cover"
-                />
-              </video>
-              <div className="absolute inset-0 bg-gradient-to-r from-black via-purple-900/70 to-transparent"></div>
-              <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent"></div>
-            </div>
+              />
+            </video>
+            <div className="absolute inset-0 bg-gradient-to-r from-black via-purple-900/70 to-transparent"></div>
+            <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent"></div>
+          </div>
 
-            {/* Video Controls */}
-            <div className="absolute top-6 right-6 z-20">
+          {/* Video Controls */}
+          <div className="absolute top-6 right-6 z-20">
+            <button
+              onClick={() => setIsMuted(!isMuted)}
+              className="bg-black/50 backdrop-blur-sm text-white p-3 rounded-full hover:bg-black/70 transition-all duration-300 border border-purple-500/30"
+            >
+              {isMuted ? (
+                <VolumeX className="w-5 h-5" />
+              ) : (
+                <Volume2 className="w-5 h-5" />
+              )}
+            </button>
+          </div>
+
+          {/* Trailer Navigation Dots */}
+          <div className="absolute bottom-6 left-1/2 transform -translate-x-1/2 flex gap-3 z-20">
+            {featuredTrailers.map((_, index) => (
               <button
-                onClick={() => setIsMuted(!isMuted)}
-                className="bg-black/50 backdrop-blur-sm text-white p-3 rounded-full hover:bg-black/70 transition-all duration-300 border border-purple-500/30"
-              >
-                {isMuted ? (
-                  <VolumeX className="w-5 h-5" />
-                ) : (
-                  <Volume2 className="w-5 h-5" />
-                )}
-              </button>
-            </div>
+                key={index}
+                onClick={() => setCurrentTrailerIndex(index)}
+                className={`w-3 h-3 rounded-full transition-all duration-300 ${
+                  index === currentTrailerIndex
+                    ? "bg-purple-400 scale-125"
+                    : "bg-white/50 hover:bg-white/80"
+                }`}
+              />
+            ))}
+          </div>
 
-            {/* Trailer Navigation Dots */}
-            <div className="absolute bottom-6 left-1/2 transform -translate-x-1/2 flex gap-3 z-20">
-              {featuredTrailers.map((_, index) => (
+          <div className="relative z-10 flex items-center h-full px-12">
+            <div className="max-w-3xl">
+              <div className="mb-4">
+                <span className="bg-gradient-to-r from-purple-500 to-violet-500 text-white text-sm px-4 py-2 rounded-full font-bold border border-purple-400/50">
+                  🎮 Featured Trailer
+                </span>
+              </div>
+              <h1 className="text-6xl font-bold bg-gradient-to-r from-purple-400 via-violet-400 to-pink-400 bg-clip-text text-transparent mb-4 leading-tight">
+                {currentTrailer.title}
+              </h1>
+              <p className="text-xl text-gray-300 mb-8 max-w-2xl">
+                {currentTrailer.description}
+              </p>
+              <div className="flex gap-4">
                 <button
-                  key={index}
-                  onClick={() => setCurrentTrailerIndex(index)}
-                  className={`w-3 h-3 rounded-full transition-all duration-300 ${
-                    index === currentTrailerIndex
-                      ? "bg-purple-400 scale-125"
-                      : "bg-white/50 hover:bg-white/80"
-                  }`}
-                />
-              ))}
-            </div>
-
-            <div className="relative z-10 flex items-center h-full px-12">
-              <div className="max-w-3xl">
-                <div className="mb-4">
-                  <span className="bg-gradient-to-r from-purple-500 to-violet-500 text-white text-sm px-4 py-2 rounded-full font-bold border border-purple-400/50">
-                    🎮 Featured Trailer
-                  </span>
-                </div>
-                <h1 className="text-6xl font-bold bg-gradient-to-r from-purple-400 via-violet-400 to-pink-400 bg-clip-text text-transparent mb-4 leading-tight">
-                  {currentTrailer.title}
-                </h1>
-                <p className="text-xl text-gray-300 mb-8 max-w-2xl">
-                  {currentTrailer.description}
-                </p>
-                <div className="flex gap-4">
-                  <button
-                    onClick={() => handlePlay(currentTrailer)}
-                    className="bg-gradient-to-r from-purple-600 to-violet-600 text-white font-bold px-8 py-4 rounded-full hover:from-purple-500 hover:to-violet-500 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-purple-500/50 border border-purple-400/50"
-                  >
-                    <PlayIcon
-                      className="w-6 h-6 inline mr-2"
-                      fill="currentColor"
-                    />
-                    Play Now
-                  </button>
-                  <button className="bg-black/30 backdrop-blur-sm text-white font-bold px-8 py-4 rounded-full hover:bg-black/50 transition-all duration-300 border border-purple-400/30">
-                    Watch Trailer
-                  </button>
-                </div>
+                  onClick={() => handlePlay(currentTrailer)}
+                  className="bg-gradient-to-r from-purple-600 to-violet-600 text-white font-bold px-8 py-4 rounded-full hover:from-purple-500 hover:to-violet-500 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-purple-500/50 border border-purple-400/50"
+                >
+                  <Play
+                    className="w-6 h-6 inline mr-2"
+                    fill="currentColor"
+                  />
+                  Play Now
+                </button>
+                <button className="bg-black/30 backdrop-blur-sm text-white font-bold px-8 py-4 rounded-full hover:bg-black/50 transition-all duration-300 border border-purple-400/30">
+                  Watch Trailer
+                </button>
               </div>
             </div>
-          </section>
-        )}
+          </div>
+        </section>
 
         <div className="px-8 pb-8 relative">
           {(selectedGenre || selectedCategory) && (

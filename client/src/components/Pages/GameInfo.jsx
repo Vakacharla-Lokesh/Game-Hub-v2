@@ -1,313 +1,207 @@
-import { gameById, getGenres } from "../../api/GameService";
-import Sidebar from "../Sidebar";
+// src/pages/GameInfo.jsx
+import React, { useState, useEffect } from "react";
+import { useParams, Link } from "react-router-dom";
+import { gameById } from "../../api/GameService";
 import Footer from "../layout/Footer";
-import React, { useState, useEffect, useRef } from "react";
 import {
-  ChevronRight,
+  ChevronLeft,
   Play,
   Star,
-  TrendingUp,
+  Share2,
+  Users,
+  Trophy,
   Gamepad2,
-  Zap,
-  Crown,
-  Target,
-  Sword,
-  Car,
-  Puzzle,
-  Music,
-  Sparkles,
 } from "lucide-react";
-import GameCard from "../GameCard";
-
-// const gameById = async (id) => {
-//   await new Promise((resolve) => setTimeout(resolve, 500));
-//   return {
-//     id,
-//     title: `Epic Game ${id}`,
-//     genre: ['Action', 'Adventure', 'RPG'][Math.floor(Math.random() * 3)],
-//     rating: (4 + Math.random()).toFixed(1),
-//     description: 'An incredible gaming experience that will keep you entertained for hours.',
-//     instructions: 'Use WASD to move, Space to jump, Mouse to look around.',
-//     embed_code: '<iframe src="https://example.com/game" width="800" height="600"></iframe>',
-//     thumbnail: `https://picsum.photos/400/300?random=${id}`,
-//     isHot: Math.random() > 0.7,
-//     isNew: Math.random() > 0.8
-//   };
-// };
-const genres = getGenres();
-
-const categories = [
-  "Trending Now",
-  "New Releases",
-  "Popular This Week",
-  "Editor's Choice",
-  "Multiplayer",
-  "Single Player",
-  "Free to Play",
-  "Premium Games",
-];
 
 export default function GameInfo() {
-  const [games, setGames] = useState([]);
+  const { id } = useParams();
+  const [game, setGame] = useState(null);
   const [loading, setLoading] = useState(true);
-  const [selectedGenre, setSelectedGenre] = useState(null);
-  const [selectedCategory, setSelectedCategory] = useState(null);
-  const [featuredGame, setFeaturedGame] = useState(null);
-
-  const trendingRef = useRef(null);
-  const newReleasesRef = useRef(null);
-  const popularRef = useRef(null);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
-    loadGames();
-  }, []);
+    const loadGameDetails = async () => {
+      try {
+        const data = await gameById(id);
+        setGame(data);
+      } catch (err) {
+        console.error("Failed to load game:", err);
+        setError("Failed to load game. Try again later.");
+      } finally {
+        setLoading(false);
+      }
+    };
 
-  const loadGames = async () => {
-    setLoading(true);
-    try {
-      // Load multiple games
-      const gamePromises = Array.from({ length: 24 }, (_, i) =>
-        gameById(i + 1)
-      );
-      const gameData = await Promise.all(gamePromises);
-      setGames(gameData);
-      setFeaturedGame(gameData[0]);
-    } catch (error) {
-      console.error("Error loading games:", error);
-    } finally {
-      setLoading(false);
+    if (id) loadGameDetails();
+  }, [id]);
+
+  const handleShare = () => {
+    if (navigator.share) {
+      navigator.share({
+        title: game.title,
+        text: `Check out this amazing game: ${game.title}`,
+        url: window.location.href,
+      });
+    } else {
+      navigator.clipboard.writeText(window.location.href);
+      alert("Link copied to clipboard!");
     }
   };
-
-  const handlePlay = (game) => {
-    // Navigate to game detail page or open game modal
-    console.log("Playing game:", game);
-  };
-
-  const handleGenreClick = (genre) => {
-    setSelectedGenre(selectedGenre === genre ? null : genre);
-    setSelectedCategory(null);
-  };
-
-  const handleCategoryClick = (category) => {
-    setSelectedCategory(selectedCategory === category ? null : category);
-    setSelectedGenre(null);
-
-    // Scroll to relevant section
-    if (category === "Trending Now" && trendingRef.current) {
-      trendingRef.current.scrollIntoView({ behavior: "smooth" });
-    } else if (category === "New Releases" && newReleasesRef.current) {
-      newReleasesRef.current.scrollIntoView({ behavior: "smooth" });
-    } else if (category === "Popular This Week" && popularRef.current) {
-      popularRef.current.scrollIntoView({ behavior: "smooth" });
-    }
-  };
-
-  const filteredGames = games.filter((game) => {
-    if (selectedGenre) return game.genre === selectedGenre;
-    return true;
-  });
-
-  const trendingGames = games.filter((game) => game.isHot).slice(0, 8);
-  const newGames = games.filter((game) => game.isNew).slice(0, 6);
-  const popularGames = games.slice(0, 12);
 
   if (loading) {
     return (
-      <div className="flex min-h-screen bg-black">
-        <div className="w-80 bg-gradient-to-b from-gray-900 to-black border-r border-gray-800"></div>
-        <div className="flex-1 flex items-center justify-center">
-          <div className="text-center">
-            <div className="w-16 h-16 border-4 border-yellow-400 border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
-            <p className="text-yellow-400 text-xl font-semibold">
-              Loading Epic Games...
-            </p>
-          </div>
+      <div className="min-h-screen bg-gradient-to-br from-gray-900 to-black flex items-center justify-center">
+        <div className="text-center relative">
+          <div className="w-16 h-16 border-4 border-purple-500 border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
+          <p className="text-xl font-bold bg-gradient-to-r from-purple-400 to-violet-400 bg-clip-text text-transparent">
+            Loading Epic Game Info...
+          </p>
+        </div>
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-black via-red-950 to-red-900 text-red-400">
+        <div className="text-center p-8 border border-red-500/30 bg-red-900/20 rounded-xl">
+          <div className="text-5xl mb-4">⚠️</div>
+          <p className="text-xl font-semibold">{error}</p>
+        </div>
+      </div>
+    );
+  }
+
+  if (!game) {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-black via-yellow-900 to-yellow-800 text-yellow-400">
+        <div className="text-center p-8 border border-yellow-500/30 bg-yellow-900/20 rounded-xl">
+          <div className="text-5xl mb-4">🎮</div>
+          <p className="text-xl font-semibold">Game not found.</p>
         </div>
       </div>
     );
   }
 
   return (
-    <div className="flex min-h-screen bg-black text-white">
-      <Sidebar
-        onGenreClick={handleGenreClick}
-        onCategoryClick={handleCategoryClick}
-        selectedGenre={selectedGenre}
-        selectedCategory={selectedCategory}
-      />
+    <div className="min-h-screen bg-gradient-to-b from-gray-900 to-black text-white relative overflow-hidden">
+      {/* Animated FX */}
+      <div className="fixed inset-0 opacity-10 pointer-events-none z-0">
+        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-purple-500 rounded-full blur-3xl animate-pulse"></div>
+        <div className="absolute top-3/4 right-1/4 w-72 h-72 bg-violet-500 rounded-full blur-3xl animate-pulse delay-1000"></div>
+        <div className="absolute top-1/2 left-1/2 w-64 h-64 bg-indigo-500 rounded-full blur-3xl animate-pulse delay-2000"></div>
+      </div>
 
-      <main className="flex-1 overflow-auto">
-        {/* Hero Section */}
-        {featuredGame && !selectedGenre && !selectedCategory && (
-          <section className="relative h-96 overflow-hidden mb-12">
-            <div className="absolute inset-0">
-              <img
-                src={featuredGame.thumbnail}
-                alt={featuredGame.title}
-                className="w-full h-full object-cover"
-              />
-              <div className="absolute inset-0 bg-gradient-to-r from-black via-black/70 to-transparent"></div>
-            </div>
-            <div className="relative z-10 flex items-center h-full px-12">
-              <div className="max-w-2xl">
-                <h1 className="text-6xl font-bold bg-gradient-to-r from-yellow-400 via-yellow-500 to-orange-500 bg-clip-text text-transparent mb-4 leading-tight">
-                  {featuredGame.title}
-                </h1>
-                <p className="text-xl text-gray-300 mb-6 leading-relaxed">
-                  {featuredGame.description}
-                </p>
-                <button
-                  onClick={() => handlePlay(featuredGame)}
-                  className="bg-gradient-to-r from-yellow-500 to-orange-500 text-black font-bold px-8 py-4 rounded-full hover:from-yellow-400 hover:to-orange-400 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-yellow-500/50"
-                >
-                  <Play
-                    className="w-6 h-6 inline mr-2"
-                    fill="currentColor"
-                  />
-                  Play Now
-                </button>
-              </div>
-            </div>
-          </section>
-        )}
-
-        <div className="px-8 pb-8">
-          {/* Section Title */}
-          {(selectedGenre || selectedCategory) && (
-            <div className="mb-8">
-              <h2 className="text-4xl font-bold text-yellow-400 mb-2">
-                {selectedGenre || selectedCategory}
-              </h2>
-              <div className="w-24 h-1 bg-gradient-to-r from-yellow-400 to-orange-500 rounded-full"></div>
-            </div>
-          )}
-
-          {/* Trending Section */}
-          {!selectedGenre && !selectedCategory && trendingGames.length > 0 && (
-            <section
-              ref={trendingRef}
-              className="mb-12"
-            >
-              <div className="flex items-center gap-3 mb-6">
-                <TrendingUp className="w-8 h-8 text-red-500" />
-                <h2 className="text-3xl font-bold text-yellow-400">
-                  Trending Now
-                </h2>
-                <div className="flex-1 h-px bg-gradient-to-r from-red-500 to-transparent"></div>
-              </div>
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-                {trendingGames.map((game) => (
-                  <GameCard
-                    key={`trending-${game.id}`}
-                    game={game}
-                    onPlay={handlePlay}
-                  />
-                ))}
-              </div>
-            </section>
-          )}
-
-          {/* New Releases Section */}
-          {!selectedGenre && !selectedCategory && newGames.length > 0 && (
-            <section
-              ref={newReleasesRef}
-              className="mb-12"
-            >
-              <div className="flex items-center gap-3 mb-6">
-                <Sparkles className="w-8 h-8 text-green-500" />
-                <h2 className="text-3xl font-bold text-yellow-400">
-                  New Releases
-                </h2>
-                <div className="flex-1 h-px bg-gradient-to-r from-green-500 to-transparent"></div>
-              </div>
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {newGames.map((game) => (
-                  <GameCard
-                    key={`new-${game.id}`}
-                    game={game}
-                    onPlay={handlePlay}
-                  />
-                ))}
-              </div>
-            </section>
-          )}
-
-          {/* Main Games Grid */}
-          <section ref={popularRef}>
-            {!selectedGenre && !selectedCategory && (
-              <div className="flex items-center gap-3 mb-6">
-                <Crown className="w-8 h-8 text-yellow-500" />
-                <h2 className="text-3xl font-bold text-yellow-400">
-                  All Games
-                </h2>
-                <div className="flex-1 h-px bg-gradient-to-r from-yellow-500 to-transparent"></div>
-              </div>
-            )}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-              {(selectedGenre || selectedCategory
-                ? filteredGames
-                : popularGames
-              ).map((game) => (
-                <GameCard
-                  key={game.id}
-                  game={game}
-                  onPlay={handlePlay}
-                />
-              ))}
-            </div>
-          </section>
+      <main className="relative z-10 px-8 py-6">
+        <div className="flex items-center justify-between mb-6">
+          <Link
+            to="/games"
+            className="flex items-center text-purple-400 hover:text-purple-300 transition font-semibold bg-purple-900/20 px-4 py-2 rounded-full border border-purple-500/30"
+          >
+            <ChevronLeft className="w-5 h-5 mr-2" />
+            Back to Games
+          </Link>
+          <button
+            onClick={handleShare}
+            className="flex items-center text-white hover:text-yellow-300 transition font-semibold bg-yellow-500/10 border border-yellow-400/40 px-4 py-2 rounded-full"
+          >
+            <Share2 className="w-5 h-5 mr-2" />
+            Share Game
+          </button>
         </div>
 
-        <Footer />
+        {/* Game Preview */}
+        <div className="relative overflow-hidden rounded-3xl mb-10 border border-white/10 shadow-2xl">
+          <img
+            src={game.image_url}
+            alt={game.title}
+            className="w-full h-96 object-cover"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-transparent to-black/30" />
+          <div className="absolute bottom-6 left-6 flex items-center gap-2 bg-black/80 backdrop-blur-sm rounded-full px-6 py-3 border border-yellow-400/60 shadow-lg">
+            <Star
+              className="w-6 h-6 text-yellow-400 animate-pulse"
+              fill="currentColor"
+            />
+            <span className="text-white text-xl font-bold">{game.rating}</span>
+            <span className="text-gray-300 text-sm">/5.0</span>
+          </div>
+          <div className="absolute top-6 right-6 flex flex-col gap-3">
+            {game.isHot && (
+              <span className="bg-gradient-to-r from-red-500 to-pink-500 text-white text-sm px-5 py-2 rounded-full font-bold animate-pulse border border-red-400/60 shadow-lg">
+                🔥 TRENDING
+              </span>
+            )}
+            {game.isNew && (
+              <span className="bg-gradient-to-r from-green-500 to-emerald-500 text-white text-sm px-5 py-2 rounded-full font-bold border border-green-400/60 shadow-lg">
+                ✨ NEW RELEASE
+              </span>
+            )}
+          </div>
+        </div>
+
+        {/* Game Info Section */}
+        <section className="max-w-5xl mx-auto">
+          <h1 className="text-6xl font-bold bg-gradient-to-r from-purple-400 via-violet-400 to-pink-400 bg-clip-text text-transparent mb-6 leading-tight">
+            {game.title}
+          </h1>
+
+          <p className="text-gray-300 text-xl mb-10 leading-relaxed">
+            {game.description}
+          </p>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-12">
+            <div className="flex items-center gap-4 p-5 bg-purple-900/10 border border-purple-500/30 rounded-xl">
+              <Gamepad2 className="w-6 h-6 text-purple-300" />
+              <div>
+                <p className="text-xs text-purple-300">Category</p>
+                <p className="font-bold text-lg text-white">
+                  {game.category || "N/A"}
+                </p>
+              </div>
+            </div>
+            <div className="flex items-center gap-4 p-5 bg-blue-900/10 border border-blue-500/30 rounded-xl">
+              <Trophy className="w-6 h-6 text-blue-300" />
+              <div>
+                <p className="text-xs text-blue-300">Genre</p>
+                <p className="font-bold text-lg text-white">
+                  {game.genre || "N/A"}
+                </p>
+              </div>
+            </div>
+            <div className="flex items-center gap-4 p-5 bg-orange-900/10 border border-orange-500/30 rounded-xl">
+              <Users className="w-6 h-6 text-orange-300" />
+              <div>
+                <p className="text-xs text-orange-300">Players</p>
+                <p className="font-bold text-lg text-white">
+                  {game.players || "Single/Multiplayer"}
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <h1 className="text-3xl font-bold bg-gradient-to-r from-purple-400 via-violet-400 to-pink-400 bg-clip-text text-transparent mb-6 leading-tight">
+            Instructions
+          </h1>
+          <p className="text-gray-300 text-xl mb-10 leading-relaxed">
+            {game.instructions}
+          </p>
+
+          <div className="flex flex-col items-center justify-center mb-6">
+            <a
+              href={game.iframe_url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center bg-gradient-to-r from-purple-600 to-violet-600 text-white font-bold px-12 py-5 rounded-2xl hover:from-purple-500 hover:to-violet-500 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-purple-500/50 border border-purple-400/50 text-2xl"
+            >
+              <Play className="mr-3" />
+              Play Now
+            </a>
+          </div>
+        </section>
       </main>
+
+      <Footer className="mt-16" />
     </div>
   );
 }
-
-//   return (
-//     <div className="flex min-h-screen bg-black text-yellow-400">
-//       <Sidebar />
-//       <main className="flex-1 p-6 overflow-auto">
-//         <div className="text-center mb-10">
-//           <button
-//             onClick={loadGameDetails}
-//             className="bg-yellow-500 text-black font-bold px-6 py-3 rounded-full shadow-lg hover:bg-yellow-600 transition"
-//           >
-//             🔍 Load Game Details
-//           </button>
-//         </div>
-
-//         {game && (
-//           <section className="max-w-4xl mx-auto">
-//             <h1 className="text-4xl font-bold mb-4 text-center">{game.title}</h1>
-//             <div className="mb-6 text-center">
-//               <div
-//                 className="w-full aspect-video border border-yellow-600 rounded overflow-hidden"
-//                 dangerouslySetInnerHTML={{ __html: game.embed_code }}
-//               />
-//             </div>
-//             <div className="bg-[#1a1a1a] p-6 rounded-lg shadow-md">
-//               <p className="mb-2 text-lg">🎮 <strong>Genre:</strong> {game.genre}</p>
-//               <p className="mb-2 text-lg">⭐ <strong>Rating:</strong> {game.rating}</p>
-//               <p className="mb-4"><strong>Description:</strong> {game.description}</p>
-//               <p className="mb-4"><strong>How to Play:</strong> {game.instructions}</p>
-//               <div className="text-center mt-6">
-//                 <a
-//                   href={game.embed_code.match(/src=\"(.*?)\"/)?.[1] || '#'}
-//                   target="_blank"
-//                   rel="noopener noreferrer"
-//                   className="inline-block bg-yellow-600 text-black px-6 py-3 rounded-lg hover:bg-yellow-700 transition"
-//                 >
-//                   ▶ Play in Fullscreen
-//                 </a>
-//               </div>
-//             </div>
-//           </section>
-//         )}
-
-//         <Footer />
-//       </main>
-//     </div>
-//   );
-// }

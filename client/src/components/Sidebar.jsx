@@ -3,17 +3,6 @@ import * as LucideIcons from "lucide-react";
 import { getGamePerGenres, getGenres } from "../api/GameService";
 import { ChevronRight, Gamepad2, TrendingUp } from "lucide-react";
 
-// const genres = [
-//   { name: "Action", icon: Zap, count: 156 },
-//   { name: "Adventure", icon: Crown, count: 89 },
-//   { name: "Puzzle", icon: Puzzle, count: 134 },
-//   { name: "Racing", icon: Car, count: 67 },
-//   { name: "Shooting", icon: Target, count: 98 },
-//   { name: "RPG", icon: Sword, count: 45 },
-//   { name: "Music", icon: Music, count: 23 },
-//   { name: "Sports", icon: Gamepad2, count: 78 },
-// ];
-
 const categories = [
   "Trending Now",
   "New Releases",
