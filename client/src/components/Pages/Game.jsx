@@ -2,6 +2,8 @@ import React, { useState, useEffect, useRef } from "react";
 import { allGames, getGenres, getGamePerGenres } from "../../api/GameService";
 import Sidebar from "../Sidebar";
 import Footer from "../layout/Footer";
+
+
 import {
   ChevronRight,
   Star,
@@ -15,39 +17,16 @@ import {
   Puzzle,
   Music,
   Sparkles,
+  Play as PlayIcon,
+  Volume2,
+  VolumeX,
 } from "lucide-react";
 import Play from "../Play";
 
-//   const gameById = async (id) => {
-//   await new Promise((resolve) => setTimeout(resolve, 500));
-//   return {
-//     id,
-//     title: `Epic Game ${id}`,
-//     genre: ['Action', 'Adventure', 'RPG'][Math.floor(Math.random() * 3)],
-//     rating: (4 + Math.random()).toFixed(1),
-//     description: 'An incredible gaming experience that will keep you entertained for hours.',
-//     instructions: 'Use WASD to move, Space to jump, Mouse to look around.',
-//     embed_code: '<iframe src="https://example.com/game" width="800" height="600"></iframe>',
-//     thumbnail: `https://picsum.photos/400/300?random=${id}`,
-//     isHot: Math.random() > 0.7,
-//     isNew: Math.random() > 0.8
-//   };
-// };
-
-// const genres = [
-//   { name: "Action", icon: Zap, count: 156 },
-//   { name: "Adventure", icon: Crown, count: 89 },
-//   { name: "Puzzle", icon: Puzzle, count: 134 },
-//   { name: "Racing", icon: Car, count: 67 },
-//   { name: "Shooting", icon: Target, count: 98 },
-//   { name: "RPG", icon: Sword, count: 45 },
-//   { name: "Music", icon: Music, count: 23 },
-//   { name: "Sports", icon: Gamepad2, count: 78 },
-// ];
-
-// const genres = getGenres();
+const genres = getGenres();
 
 const categories = [
+ 
   "Trending Now",
   "New Releases",
   "Popular This Week",
@@ -58,58 +37,98 @@ const categories = [
   "Premium Games",
 ];
 
+// Sample video trailers - replace with your actual video URLs
+const featuredTrailers = [
+  {
+    id: 1,
+    title: "Epic Adventure Quest",
+    videoUrl: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",
+    thumbnail: "https://picsum.photos/1920/1080?random=1",
+    description: "Embark on the ultimate adventure in this stunning open-world RPG"
+  },
+  {
+    id: 2,
+    title: "Cyberpunk Racing",
+    videoUrl: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4",
+    thumbnail: "https://picsum.photos/1920/1080?random=2",
+    description: "High-speed racing in a neon-lit cyberpunk world"
+  },
+  {
+    id: 3,
+    title: "Space Warriors",
+    videoUrl: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4",
+    thumbnail: "https://picsum.photos/1920/1080?random=3",
+    description: "Epic space battles await in this action-packed shooter"
+  }
+];
+
 export default function Game() {
   const [games, setGames] = useState([]);
   const [loading, setLoading] = useState(true);
   const [selectedGenre, setSelectedGenre] = useState(null);
   const [selectedCategory, setSelectedCategory] = useState(null);
   const [featuredGame, setFeaturedGame] = useState(null);
+  const [currentTrailerIndex, setCurrentTrailerIndex] = useState(0);
+  const [isMuted, setIsMuted] = useState(true);
 
   const trendingRef = useRef(null);
   const newReleasesRef = useRef(null);
   const popularRef = useRef(null);
+  const videoRef = useRef(null);
 
   useEffect(() => {
     loadGames();
   }, []);
 
-  // const loadGames = async () => {
-  //   setLoading(true);
-  //   try {
-  //     const promises = Array.from({ length: 24 }, (_, i) => gameById(i + 1));
-  //     const data = (await Promise.all(promises)).filter(Boolean);
-  //     setGames(data);
-  //     setFeaturedGame(data[0]);
-  //   } catch (error) {
-  //     console.error("Failed to load games:", error);
-  //   } finally {
-  //     setLoading(false);
-  //   }
-  // };
+  // Auto-cycle through trailers
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentTrailerIndex((prev) => (prev + 1) % featuredTrailers.length);
+    }, 10000); // Change every 10 seconds
+
+    return () => clearInterval(interval);
+  }, []);
 
   const loadGames = async () => {
     setLoading(true);
     try {
       const data = await allGames();
-      console.log("Loaded games:", data); // ✅ Fetch all games at once
-      setGames(data); // ✅ Save to state
-      setFeaturedGame(data[0]); // ✅ Set featured (fallback if empty)
+      console.log("Loaded games:", data);
+      setGames(data);
+      setFeaturedGame(data[0]);
     } catch (error) {
       console.error("Failed to load games:", error);
     } finally {
       setLoading(false);
     }
   };
+
   if (loading) {
     return (
-      <div className="text-white flex justify-center items-center h-screen">
-        Loading games...
+      <div className="min-h-screen bg-gradient-to-br from-gray-900 to-black rounded-xl overflow-hidden shadow-lg hover:shadow-2xl hover:shadow-yellow-500/20 transition-all duration-300 hover:-translate-y-2 border border-gray-800 hover:border-yellow-500/50 flex justify-center items-center">
+        <div className="relative">
+          {/* Animated background pattern */}
+          <div className="absolute inset-0 opacity-20">
+            <div className="absolute top-0 left-0 w-72 h-72 bg-purple-500 rounded-full blur-3xl animate-pulse"></div>
+            <div className="absolute bottom-0 right-0 w-96 h-96 bg-violet-500 rounded-full blur-3xl animate-pulse delay-1000"></div>
+          </div>
+          <div className="relative text-white text-center">
+            <div className="w-16 h-16 border-4 border-purple-500 border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
+            <p className="text-xl bg-gradient-to-r from-purple-400 to-violet-400 bg-clip-text text-transparent font-bold">
+              Loading Epic Games...
+            </p>
+          </div>
+        </div>
       </div>
     );
   }
 
   if (!Array.isArray(games)) {
-    return <div className="text-red-500">❌ Invalid games data</div>;
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-black via-purple-950 to-violet-900 flex justify-center items-center">
+        <div className="text-red-400 text-xl">❌ Invalid games data</div>
+      </div>
+    );
   }
 
   const handlePlay = (game) => {
@@ -142,70 +161,131 @@ export default function Game() {
   const newGames = games.filter((g) => g.isNew).slice(0, 6);
   const popularGames = games.slice(0, 12);
 
+  const currentTrailer = featuredTrailers[currentTrailerIndex];
+
   return (
-    <div className="flex min-h-screen bg-black text-white">
+    <div className="flex min-h-screen bg-gradient-to-b from-gray-900 to-black border-r border-gray-800 p-6 text-white relative overflow-hidden">
+      {/* Animated background pattern */}
+      <div className="fixed inset-0 opacity-10 pointer-events-none">
+        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-purple-500 rounded-full blur-3xl animate-pulse"></div>
+        <div className="absolute top-3/4 right-1/4 w-72 h-72 bg-violet-500 rounded-full blur-3xl animate-pulse delay-1000"></div>
+        <div className="absolute top-1/2 left-1/2 w-64 h-64 bg-indigo-500 rounded-full blur-3xl animate-pulse delay-2000"></div>
+      </div>
+
+      {/* Geometric pattern overlay */}
+      <div className="fixed inset-0 opacity-5 pointer-events-none">
+        <div style={{
+          backgroundImage: `radial-gradient(circle at 2px 2px, purple 1px, transparent 0)`,
+          backgroundSize: '40px 40px'
+        }} className="w-full h-full"></div>
+      </div>
+
       <Sidebar
         onGenreClick={handleGenreClick}
         onCategoryClick={handleCategoryClick}
         selectedGenre={selectedGenre}
         selectedCategory={selectedCategory}
+        
       />
 
-      <main className="flex-1 overflow-auto">
-        {featuredGame && !selectedGenre && !selectedCategory && (
-          <section className="relative h-96 overflow-hidden mb-12">
+      <main className="flex-1 overflow-auto relative z-10">
+        {/* Video Trailer Section */}
+        {!selectedGenre && !selectedCategory && (
+          <section className="relative h-[70vh] overflow-hidden mb-12">
             <div className="absolute inset-0">
-              <img
-                src={featuredGame.thumbnail}
-                alt={featuredGame.title}
+              <video
+                ref={videoRef}
+                key={currentTrailer.id}
                 className="w-full h-full object-cover"
-              />
-              <div className="absolute inset-0 bg-gradient-to-r from-black via-black/70 to-transparent"></div>
+                autoPlay
+                muted={isMuted}
+                loop
+                playsInline
+              >
+                <source src={currentTrailer.videoUrl} type="video/mp4" />
+                <img
+                  src={currentTrailer.thumbnail}
+                  alt={currentTrailer.title}
+                  className="w-full h-full object-cover"
+                />
+              </video>
+              <div className="absolute inset-0 bg-gradient-to-r from-black via-purple-900/70 to-transparent"></div>
+              <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent"></div>
             </div>
-            <div className="relative z-10 flex items-center h-full px-12">
-              <div className="max-w-2xl">
-                <h1 className="text-6xl font-bold bg-gradient-to-r from-yellow-400 via-yellow-500 to-orange-500 bg-clip-text text-transparent mb-4 leading-tight">
-                  {featuredGame.title}
-                </h1>
-                <p className="text-xl text-gray-300 mb-6">
-                  {featuredGame.description}
-                </p>
+
+            {/* Video Controls */}
+            <div className="absolute top-6 right-6 z-20">
+              <button
+                onClick={() => setIsMuted(!isMuted)}
+                className="bg-black/50 backdrop-blur-sm text-white p-3 rounded-full hover:bg-black/70 transition-all duration-300 border border-purple-500/30"
+              >
+                {isMuted ? <VolumeX className="w-5 h-5" /> : <Volume2 className="w-5 h-5" />}
+              </button>
+            </div>
+
+            {/* Trailer Navigation Dots */}
+            <div className="absolute bottom-6 left-1/2 transform -translate-x-1/2 flex gap-3 z-20">
+              {featuredTrailers.map((_, index) => (
                 <button
-                  onClick={() => handlePlay(featuredGame)}
-                  className="bg-gradient-to-r from-yellow-500 to-orange-500 text-black font-bold px-8 py-4 rounded-full hover:from-yellow-400 hover:to-orange-400 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-yellow-500/50"
-                >
-                  <Play
-                    className="w-6 h-6 inline mr-2"
-                    fill="currentColor"
-                  />
-                  Play Now
-                </button>
+                  key={index}
+                  onClick={() => setCurrentTrailerIndex(index)}
+                  className={`w-3 h-3 rounded-full transition-all duration-300 ${
+                    index === currentTrailerIndex
+                      ? 'bg-purple-400 scale-125'
+                      : 'bg-white/50 hover:bg-white/80'
+                  }`}
+                />
+              ))}
+            </div>
+
+            <div className="relative z-10 flex items-center h-full px-12">
+              <div className="max-w-3xl">
+                <div className="mb-4">
+                  <span className="bg-gradient-to-r from-purple-500 to-violet-500 text-white text-sm px-4 py-2 rounded-full font-bold border border-purple-400/50">
+                    🎮 Featured Trailer
+                  </span>
+                </div>
+                <h1 className="text-6xl font-bold bg-gradient-to-r from-purple-400 via-violet-400 to-pink-400 bg-clip-text text-transparent mb-4 leading-tight">
+                  {currentTrailer.title}
+                </h1>
+                <p className="text-xl text-gray-300 mb-8 max-w-2xl">
+                  {currentTrailer.description}
+                </p>
+                <div className="flex gap-4">
+                  <button
+                    onClick={() => handlePlay(currentTrailer)}
+                    className="bg-gradient-to-r from-purple-600 to-violet-600 text-white font-bold px-8 py-4 rounded-full hover:from-purple-500 hover:to-violet-500 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-purple-500/50 border border-purple-400/50"
+                  >
+                    <PlayIcon className="w-6 h-6 inline mr-2" fill="currentColor" />
+                    Play Now
+                  </button>
+                  <button className="bg-black/30 backdrop-blur-sm text-white font-bold px-8 py-4 rounded-full hover:bg-black/50 transition-all duration-300 border border-purple-400/30">
+                    Watch Trailer
+                  </button>
+                </div>
               </div>
             </div>
           </section>
         )}
 
-        <div className="px-8 pb-8">
+        <div className="px-8 pb-8 relative">
           {(selectedGenre || selectedCategory) && (
             <div className="mb-8">
-              <h2 className="text-4xl font-bold text-yellow-400 mb-2">
+              <h2 className="text-4xl font-bold bg-gradient-to-r from-purple-400 to-violet-400 bg-clip-text text-transparent mb-2">
                 {selectedGenre || selectedCategory}
               </h2>
-              <div className="w-24 h-1 bg-gradient-to-r from-yellow-400 to-orange-500 rounded-full"></div>
+              <div className="w-24 h-1 bg-gradient-to-r from-purple-400 to-violet-500 rounded-full"></div>
             </div>
           )}
 
           {!selectedGenre && !selectedCategory && trendingGames.length > 0 && (
-            <section
-              ref={trendingRef}
-              className="mb-12"
-            >
+            <section ref={trendingRef} className="mb-12">
               <div className="flex items-center gap-3 mb-6">
-                <TrendingUp className="w-8 h-8 text-red-500" />
-                <h2 className="text-3xl font-bold text-yellow-400">
+                <TrendingUp className="w-8 h-8 text-red-400" />
+                <h2 className="text-3xl font-bold bg-gradient-to-r from-purple-400 to-violet-400 bg-clip-text text-transparent">
                   Trending Now
                 </h2>
-                <div className="flex-1 h-px bg-gradient-to-r from-red-500 to-transparent"></div>
+                <div className="flex-1 h-px bg-gradient-to-r from-red-400 via-purple-400 to-transparent"></div>
               </div>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
                 {trendingGames.map((game) => (
@@ -220,16 +300,13 @@ export default function Game() {
           )}
 
           {!selectedGenre && !selectedCategory && newGames.length > 0 && (
-            <section
-              ref={newReleasesRef}
-              className="mb-12"
-            >
+            <section ref={newReleasesRef} className="mb-12">
               <div className="flex items-center gap-3 mb-6">
-                <Sparkles className="w-8 h-8 text-green-500" />
-                <h2 className="text-3xl font-bold text-yellow-400">
+                <Sparkles className="w-8 h-8 text-green-400" />
+                <h2 className="text-3xl font-bold bg-gradient-to-r from-purple-400 to-violet-400 bg-clip-text text-transparent">
                   New Releases
                 </h2>
-                <div className="flex-1 h-px bg-gradient-to-r from-green-500 to-transparent"></div>
+                <div className="flex-1 h-px bg-gradient-to-r from-green-400 via-purple-400 to-transparent"></div>
               </div>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {newGames.map((game) => (
@@ -246,11 +323,11 @@ export default function Game() {
           <section ref={popularRef}>
             {!selectedGenre && !selectedCategory && (
               <div className="flex items-center gap-3 mb-6">
-                <Crown className="w-8 h-8 text-yellow-500" />
-                <h2 className="text-3xl font-bold text-yellow-400">
+                <Crown className="w-8 h-8 text-purple-400" />
+                <h2 className="text-3xl font-bold bg-gradient-to-r from-yellow-400 to-yellow-600 bg-clip-text text-transparent">
                   All Games
                 </h2>
-                <div className="flex-1 h-px bg-gradient-to-r from-yellow-500 to-transparent"></div>
+                <div className="flex-1 h-px bg-gradient-to-r from-yellow-400 to-yellow-600 to-transparent"></div>
               </div>
             )}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
@@ -268,7 +345,7 @@ export default function Game() {
           </section>
         </div>
 
-        <Footer />
+       <Footer className="fixed bottom-0 left-0 w-full z-50" />
       </main>
     </div>
   );
@@ -276,66 +353,66 @@ export default function Game() {
 
 function GameCard({ game, onPlay }) {
   return (
-    <div className="group relative bg-gradient-to-br from-gray-900 to-black rounded-xl overflow-hidden shadow-lg hover:shadow-2xl hover:shadow-yellow-500/20 transition-all duration-300 hover:-translate-y-2 border border-gray-800 hover:border-yellow-500/50">
+    <div className="group relative bg-gradient-to-br from-gray-900 to-black rounded-xl overflow-hidden shadow-lg hover:shadow-2xl hover:shadow-yellow-500/20 transition-all duration-300 hover:-translate-y-2 border border-gray-800 hover:border-yellow-500/50 backdrop-blur-sm">
       <div className="relative overflow-hidden">
         <img
           src={game.image_url}
           alt={game.title}
           className="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-500"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-purple-900/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
 
         <button
           onClick={() => onPlay(game)}
           className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 bg-black/40 backdrop-blur-sm"
         >
-          <div className="bg-yellow-500 text-black rounded-full p-4 hover:bg-yellow-400 hover:scale-110 transition-all duration-200 shadow-lg">
-            <Play
-              className="w-8 h-8"
-              fill="currentColor"
-            />
+          <div className="bg-gradient-to-r from-yellow-400 to-yellow-600 text-white rounded-full p-4 hover:from-purple-400 hover:to-violet-400 hover:scale-110 transition-all duration-200 shadow-lg border border-purple-400/50">
+            <Play className="w-8 h-8" fill="currentColor" />
           </div>
         </button>
 
         <div className="absolute top-3 left-3 flex gap-2">
           {game.isHot && (
-            <span className="bg-red-500 text-white text-xs px-2 py-1 rounded-full font-bold animate-pulse">
+            <span className="bg-gradient-to-r from-red-500 to-pink-500 text-white text-xs px-3 py-1 rounded-full font-bold animate-pulse border border-red-400/50">
               🔥 HOT
             </span>
           )}
           {game.isNew && (
-            <span className="bg-green-500 text-white text-xs px-2 py-1 rounded-full font-bold">
+            <span className="bg-gradient-to-r from-green-500 to-emerald-500 text-white text-xs px-3 py-1 rounded-full font-bold border border-green-400/50">
               ✨ NEW
             </span>
           )}
         </div>
 
-        <div className="absolute top-3 right-3 bg-black/70 backdrop-blur-sm rounded-full px-2 py-1 flex items-center gap-1">
-          <Star
-            className="w-3 h-3 text-yellow-400"
-            fill="currentColor"
-          />
+        <div className="absolute top-3 right-3 bg-black/70 backdrop-blur-sm rounded-full px-3 py-1 flex items-center gap-1 border border-purple-400/30">
+          <Star className="w-3 h-3 text-yellow-400" fill="currentColor" />
           <span className="text-white text-xs font-bold">{game.rating}</span>
         </div>
       </div>
 
-      <div className="p-4">
-        <h3 className="font-bold text-lg text-yellow-400 mb-2 group-hover:text-yellow-300 transition-colors truncate">
-          {game.title}
-        </h3>
-        <p className="text-gray-400 text-sm mb-3 line-clamp-2">
-          {game.description}
-        </p>
-        <div className="flex items-center justify-between">
-          <span className="bg-yellow-500/20 text-yellow-400 px-3 py-1 rounded-full text-xs font-semibold border border-yellow-500/30">
-            {game.genre}
-          </span>
-          <button
-            onClick={() => onPlay(game)}
-            className="text-yellow-400 hover:text-yellow-300 font-semibold text-sm hover:underline transition-colors"
-          >
-            Play Now →
-          </button>
+      <div className="p-4 relative">
+        {/* Subtle glow effect */}
+        <div className="absolute inset-0 bg-gradient-to-r from-purple-500/5 to-violet-500/5 rounded-b-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+        
+        <div className="relative z-10">
+          <h3 className="font-bold text-lg bg-gradient-to-r from-yellow-400 to-yellow-600 bg-clip-text text-transparent mb-2 group-hover:from-purple-300 group-hover:to-violet-300 transition-all truncate">
+            {game.title}
+          </h3>
+          <p className="text-gray-400 text-sm mb-3 line-clamp-2">
+            {game.description}
+          </p>
+          <div className="flex items-center justify-between">
+            <span className="bg-gradient-to-r from-purple-500/20 to-violet-500/20 text-purple-300 px-3 py-1 rounded-full text-xs font-semibold border border-purple-500/30">
+              {game.genre}
+            </span>
+            <button
+              onClick={() => onPlay(game)}
+              className="text-purple-400 hover:text-purple-300 font-semibold text-sm hover:underline transition-colors flex items-center gap-1"
+            >
+              Play Now
+              <ChevronRight className="w-3 h-3" />
+            </button>
+          </div>
         </div>
       </div>
     </div>
