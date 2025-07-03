@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import { allGames, getGenres } from "../../api/GameService";
+import { allGames, getGenres, getGamePerGenres } from "../../api/GameService";
 import Sidebar from "../Sidebar";
 import Footer from "../layout/Footer";
 import {
@@ -45,7 +45,7 @@ import Play from "../Play";
 //   { name: "Sports", icon: Gamepad2, count: 78 },
 // ];
 
-const genres = getGenres();
+// const genres = getGenres();
 
 const categories = [
   "Trending Now",

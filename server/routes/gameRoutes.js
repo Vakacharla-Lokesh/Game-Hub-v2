@@ -5,10 +5,14 @@ const {
   findAllGames,
   findGameById,
   findAllGenres,
+  getGameCountByGenre,
 } = require("../controllers/gameController");
 
 // GET GAME GENRES
 router.get("/genres", findAllGenres);
+
+// GAME COUNT PER GENRE
+router.get('/games-per-genre', getGameCountByGenre);
 
 // GET all games — now at /api/games/all
 router.get("/all", findAllGames);

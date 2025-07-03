@@ -29,8 +29,29 @@ const findAllGenres = async (req, res) => {
   }
 };
 
+const getGameCountByGenre = async (req, res) => {
+  try {
+    const result = await Game.aggregate([
+      {
+        $group: {
+          _id: "$genre", // Group by the "genre" field in the game documents
+          count: { $sum: 1 }, // Count the number of games in each genre
+        },
+      },
+      {
+        $sort: { count: -1 }, // Optional: Sort by count descending
+      },
+    ]);
+
+    res.json(result);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+};
+
 module.exports = {
   findAllGames,
   findGameById,
   findAllGenres,
+  getGameCountByGenre,
 };
