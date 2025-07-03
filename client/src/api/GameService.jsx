@@ -11,6 +11,11 @@ export const gameById = async (game_id) => {
 };
 
 export const getGenres = async () => {
-  const response = await axiosInstance.get("/genres");
+  const response = await axiosInstance.get("/games/genres");
+  return response.data;
+};
+
+export const getGamePerGenres = async () => {
+  const response = await axiosInstance.get("/games/games-per-genre");
   return response.data;
 };
