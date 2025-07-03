@@ -16,8 +16,6 @@ import {
 export default function GameInfo() {
   const { id } = useParams();
   const [game, setGame] = useState(null);
-  const { id } = useParams();
-  const [game, setGame] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
