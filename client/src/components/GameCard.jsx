@@ -21,7 +21,7 @@ function GameCard({ game, onPlay }) {
           onClick={() => onPlay(game)}
           className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 bg-black/40 backdrop-blur-sm"
         >
-          <div className="bg-yellow-500 text-black rounded-full p-4 hover:bg-gradient-to-r from-purple-400 to-violet-400 hover:scale-110 transition-all duration-200 shadow-lg">
+          <div className="bg-yellow-500 text-black rounded-full p-4 hover:bg-yellow-400 hover:scale-110 transition-all duration-200 shadow-lg">
             <Play
               className="w-8 h-8"
               fill="currentColor"
@@ -52,16 +52,16 @@ function GameCard({ game, onPlay }) {
           <span className="text-white text-xs font-bold">{game.rating}</span>
         </div>
       </div>
-bg-gradient-to-r from-purple-400 to-violet-400
+
       <div className="p-4">
-        <h3 className="font-bold text-lg text-purple-400 mb-2 group-hover:text-yellow-300 transition-colors truncate">
+        <h3 className="font-bold text-lg text-yellow-400 mb-2 group-hover:text-yellow-300 transition-colors truncate">
           {game.title}
         </h3>
         <p className="text-gray-400 text-sm mb-3 line-clamp-2">
           {game.description}
         </p>
         <div className="flex items-center justify-between">
-          <span className="bg-purple-500/20 text-purple-400 px-3 py-1 rounded-full text-xs font-semibold border border-yellow-500/30">
+          <span className="bg-yellow-500/20 text-yellow-400 px-3 py-1 rounded-full text-xs font-semibold border border-yellow-500/30">
             {game.genre}
           </span>
           <button

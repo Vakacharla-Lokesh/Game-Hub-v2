@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import * as LucideIcons from "lucide-react";
 import { getGamePerGenres, getGenres } from "../api/GameService";
 import { ChevronRight, Gamepad2, TrendingUp } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const categories = [
   "Trending Now",
@@ -54,6 +55,17 @@ function Sidebar({
         </h1>
         <p className="text-gray-400 text-sm">Discover Amazing Games</p>
       </div>
+
+      <div className="mb-8">
+          <Link
+            to="/games"
+            className="flex items-center text-purple-300 hover:text-purple-200 transition-all duration-300 font-bold bg-gradient-to-r from-purple-900/30 to-violet-900/30 px-6 py-3 rounded-full border border-purple-400/40 backdrop-blur-sm hover:border-purple-300/60 transform hover:scale-105 shadow-lg hover:shadow-purple-500/30"
+          >
+            <LucideIcons.ChevronLeft className="w-5 h-5 mr-2" />
+            Back to Games
+          </Link>
+        </div>
+      
 
       {/* Genres */}
       <div className="mb-8">
