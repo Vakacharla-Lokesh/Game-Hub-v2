@@ -4,7 +4,7 @@ export default function LandingHero() {
   const navigate = useNavigate();
 
   return (
-    <section className="py-24 flex flex-col justify-start bg-gradient-to-tr from-[#0f0c29] via-[#302b63] to-[#24243e] text-center p-6 relative overflow-hidden text-white">
+    <section className="py-24 flex flex-col justify-start bg-gradient-to-tr from-[#0f0c29] via-[#302b63] to-[#24243e] text-center px-6 sm:px-10 md:px-16 lg:px-24 relative overflow-hidden text-white w-full">
       {/* Transparent Header */}
       <header className="w-full flex justify-between items-center px-8 py-4 absolute top-0 left-0 z-20 backdrop-blur-sm bg-black/20 text-white">
         <div className="text-4xl font-extrabold tracking-wider">
@@ -42,14 +42,14 @@ export default function LandingHero() {
         ))}
       </ul>
 
-      <div className="z-10 max-w-5xl mt-32 mx-auto text-center">
-        <h1 className="text-7xl md:text-8xl font-extrabold mb-8 tracking-wide text-white drop-shadow-2xl animate-fade-in">
+      <div className="z-10 max-w-screen-xl mx-auto mt-40 text-center px-4 sm:px-6 lg:px-12">
+        <h1 className="text-6xl sm:text-7xl md:text-8xl lg:text-9xl font-extrabold mb-10 tracking-wide text-white drop-shadow-2xl animate-fade-in">
           👾 Welcome to <span className="text-yellow-400">GameVerse</span>
         </h1>
-        <p className="text-3xl md:text-4xl text-white mb-10 leading-relaxed font-medium">
+        <p className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-white mb-12 leading-relaxed font-medium">
           Dive into the most{" "}
           <span className="text-yellow-300 font-bold">thrilling</span>{" "}
-          collection of online games. <br />
+          collection of games. <br />
           Ready to{" "}
           <span className="underline decoration-yellow-400 decoration-4">
             play and conquer?
@@ -78,7 +78,6 @@ export default function LandingHero() {
           .animate-float {
             animation: float infinite ease-in-out;
           }
-
         `}
       </style>
     </section>

@@ -21,7 +21,7 @@ function Footer() {
               ></div>
             ))}
           </div>
-          <h1 className="text-2xl font-semibold tracking-wide">Game Hub</h1>
+          <h1 className="text-2xl font-semibold tracking-wide">GameVerse</h1>
         </Link>
 
         {/* About Us */}
@@ -29,10 +29,10 @@ function Footer() {
           <h2 className="font-semibold mb-4 text-2xl">About Us</h2>
           <ul className="space-y-3 text-sm">
             <li>
-              <a href="#">Team</a>
+              <a href="/contact">Team</a>
             </li>
             <li>
-              <a href="#">Help</a>
+              <a href="/help">Help</a>
             </li>
           </ul>
         </div>
@@ -55,10 +55,10 @@ function Footer() {
           <h2 className="font-semibold mb-4 text-2xl">Social</h2>
           <ul className="space-y-3 text-sm">
             <li>
-              <a href="#">Instagram</a>
+              <a href="https://www.linkedin.com/in/lokesh-vakacharla-00472a250/">LinkedIn-1</a>
             </li>
             <li>
-              <a href="#">LinkedIn</a>
+              <a href="https://www.linkedin.com/in/khushi-omar-a21508250/">LinkedIn-2</a>
             </li>
           </ul>
         </div>
@@ -70,7 +70,7 @@ function Footer() {
       {/* Bottom bar */}
       <div className="flex flex-col md:flex-row justify-center items-center text-sm text-black dark:text-white">
         <div className="flex flex-col items-center justify-center">
-          <p className="text-xl">© {new Date().getFullYear()} Game Hub</p>
+          <p className="text-xl">© {new Date().getFullYear()} GameVerse</p>
           <p>Terms of Service</p>
         </div>
       </div>

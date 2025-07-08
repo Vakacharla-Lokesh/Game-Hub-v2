@@ -57,6 +57,22 @@ const featuredTrailers = [
     thumbnail: "https://picsum.photos/1920/1080?random=3",
     description: "Epic space battles await in this action-packed shooter",
   },
+  {
+    id: 4,
+    title: "Mystic Valley",
+    videoUrl:
+      "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/Sintel.mp4",
+    thumbnail: "https://picsum.photos/1920/1080?random=4",
+    description: "Uncover ancient secrets in a magical realm full of mystery and beauty",
+  },
+  {
+    id: 5,
+    title: "Battle Arena Showdown",
+    videoUrl:
+      "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/TearsOfSteel.mp4",
+    thumbnail: "https://picsum.photos/1920/1080?random=5",
+    description: "Compete in the ultimate PvP combat arena with global challengers",
+  },
 ];
 
 export default function Game() {
@@ -395,3 +411,7 @@ export default function Game() {
     </>
   );
 }
+
+
+
+
