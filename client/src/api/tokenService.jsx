@@ -21,7 +21,7 @@ export const decodeToken = () => {
   if (!token) return null;
 
   try {
-    return jwtDecode(token); 
+    return jwtDecode(token);
   } catch (error) {
     console.error("Invalid Token", error);
     return null;
@@ -33,7 +33,7 @@ export const getUserId = () => {
   if (!token) return null;
 
   try {
-    return jwtDecode(token.userId); 
+    return jwtDecode(token.userId);
   } catch (error) {
     console.error("Invalid Token", error);
     return null;

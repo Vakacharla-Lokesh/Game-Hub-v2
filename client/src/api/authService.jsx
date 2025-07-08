@@ -1,10 +1,17 @@
-import axiosInstance from "../components/api/axiosInstance";
-import { saveToken } from "./tokenUtils";
+// import axiosInstance from "../components/api/axiosInstance";
+import axiosInstance from "./axiosInstance";
+import { saveToken } from "./tokenService";
 
 export const loginUser = async (credentials) => {
   const response = await axiosInstance.post("/auth/login", credentials);
-  saveToken(response.data.token);
-  return response.data;
+  console.log("return from database: ", response);
+  if (response.status == 200) {
+    saveToken(response.data.token);
+    return response.data;
+  } else {
+    console.log("error with credentials");
+    return response;
+  }
 };
 
 export const registerUser = async (userData) => {
@@ -18,6 +25,9 @@ export const forgotPassword = async (userEmail) => {
 };
 
 export const resetPassword = async (password, token) => {
-  const response = await axiosInstance.post(`/auth/reset-password/${token}`, password);
+  const response = await axiosInstance.post(
+    `/auth/reset-password/${token}`,
+    password
+  );
   return response;
 };

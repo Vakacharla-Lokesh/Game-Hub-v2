@@ -24,8 +24,8 @@ function Sidebar({
 
   useEffect(() => {
     const fetchData = async () => {
-      const genreData = await getGenres(); // from DB: [{ name: "Action", icon: "Zap" }, ...]
-      const countData = await getGamePerGenres(); // from DB: [{ _id: "Action", count: 5 }, ...]
+      const genreData = await getGenres();
+      const countData = await getGamePerGenres();
 
       // Create a map for faster lookup
       const countMap = {};
@@ -36,7 +36,7 @@ function Sidebar({
       // Merge count into genreData
       const mergedGenres = genreData.map((genre) => ({
         ...genre,
-        count: countMap[genre.genre_name] || 0, // Default to 0 if not found
+        count: countMap[genre.genre_name] || 0,
       }));
 
       setGenres(mergedGenres);
@@ -47,8 +47,8 @@ function Sidebar({
   }, []);
 
   return (
-    <div className="w-80 bg-gradient-to-b from-gray-900 to-black border-r border-gray-800 p-6 overflow-y-auto">
-      <div className="mb-8">
+    <div className="w-35 md:w-45 lg:w-80 bg-gradient-to-b from-gray-900 to-black border-r border-gray-800 p-6 overflow-y-auto">
+      <div className="mb-8 w-fit hidden md:block">
         <h1 className="text-3xl font-bold bg-gradient-to-r from-yellow-400 to-yellow-600 bg-clip-text text-transparent mb-2">
           GameHub
         </h1>
@@ -77,7 +77,7 @@ function Sidebar({
               >
                 <div className="flex items-center gap-3">
                   <Icon className="w-4 h-4" />
-                  <span>{genre.genre_name}</span>
+                  <span className="hidden md:block">{genre.genre_name}</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <span className="text-xs opacity-75">{genre.count}</span>

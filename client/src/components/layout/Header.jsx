@@ -1,11 +1,36 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { decodeToken, removeToken } from "../../api/tokenService";
+import { useNavigate } from "react-router-dom";
+import { Search } from "lucide-react";
 
 function Header() {
   const [userDropdownOpen, setUserDropdownOpen] = useState(false);
+  const [username, setUsername] = useState(null);
+  const [searchVisible, setSearchVisible] = useState(false);
+
+  const navigate = useNavigate();
+
+  const getUserName = () => {
+    const user = decodeToken();
+    if (user) {
+      console.log(user);
+      setUsername(user.user_name);
+    }
+  };
+
+  useEffect(() => {
+    getUserName();
+  }, []);
+
+  const setLogout = () => {
+    removeToken();
+    navigate("/");
+  };
+
   return (
     <>
       <div className="sticky top-0 z-90">
-        <nav className="bg-white border-b border-gray-200 dark:bg-black dark:border-gray-700">
+        <nav className="bg-white border-b border-gray-200 dark:bg-gray-900 dark:border-gray-700">
           <div className="w-full mx-auto px-4 py-1 flex items-center justify-between">
             <div className="flex justify-start items-center">
               <a
@@ -21,7 +46,7 @@ function Header() {
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"
-                    stroke="green"
+                    stroke="yellow"
                     stroke-width="2"
                     stroke-linecap="round"
                     stroke-linejoin="round"
@@ -53,50 +78,64 @@ function Header() {
                   </svg>
                 </div>
 
-                <span className="text-2xl max-md:text-sm font-bold dark:text-white p-1.5 max-md:hidden">
-                  GAME HUB
+                <span className="text-2xl max-md:text-sm font-bold text-yellow-500 p-1.5 max-md:hidden">
+                  GameHub
                 </span>
               </a>
             </div>
 
             {/* Profile Section */}
 
-            <div
-              className="flex items-center ml-4"
-              onClick={() => setUserDropdownOpen(!userDropdownOpen)}
-            >
-              <div className="relative">
-                <button className="w-10 h-10 rounded-full overflow-hidden border-2 border-gray-300 dark:border-gray-600 mr-5">
-                  <img
-                    src="https://flowbite.com/docs/images/people/profile-picture-3.jpg"
-                    alt="User"
-                  />
-                </button>
+            <div className="flex items-center justify-between">
+              <div className="mr-2 flex text-white">
+                <Search
+                  onClick={() => {
+                    setSearchVisible(!searchVisible);
+                  }}
+                />
+                {/* <p>Search</p> */}
+                {searchVisible && (
+                  <input className="bg-white rounded-2xl text-black pl-1.5"></input>
+                )}
               </div>
-
-              <div className="mr-3">
-                <div className="font-bold text-gray-700 dark:text-white max-md:hidden capitalize">
-                  "Guest User"
+              <div
+                className="flex items-center ml-2"
+                onClick={() => setUserDropdownOpen(!userDropdownOpen)}
+              >
+                <div className="relative">
+                  <button className="w-10 h-10 rounded-full overflow-hidden border-2 border-gray-300 dark:border-gray-600 mr-2">
+                    <img
+                      src="https://flowbite.com/docs/images/people/profile-picture-3.jpg"
+                      alt="User"
+                    />
+                  </button>
                 </div>
 
-                {userDropdownOpen && (
-                  <div className="absolute right-5 max-md:top-12 mt-2 w-48 bg-white rounded-lg shadow-lg py-2 dark:bg-gray-800 z-50">
-                    <a className="block px-4 py-2 text-gray-700 hover:bg-gray-100 dark:text-white dark:hover:bg-gray-600">
-                      Dashboard
-                    </a>
+                <div className="mr-3">
+                  {userDropdownOpen && (
+                    <div className="absolute right-5 max-md:top-12 mt-5 w-48 bg-white rounded-lg shadow-lg py-2 dark:bg-gray-800 z-50">
+                      <div className="font-bold px-4 py-2 text-gray-700 dark:text-white max-md:hidden capitalize">
+                        {username || "Guest User"}
+                      </div>
+                      <a className="block px-4 py-2 text-gray-700 hover:bg-gray-100 dark:text-white dark:hover:bg-gray-600">
+                        Profile
+                      </a>
 
-                    <a className="block px-4 py-2 text-gray-700 hover:bg-gray-100 dark:text-white dark:hover:bg-gray-600">
-                      Settings
-                    </a>
-
-                    <a
-                      href="/"
-                      className="block px-4 py-2 text-gray-700 hover:bg-gray-100 dark:text-white dark:hover:bg-gray-600"
-                    >
-                      Sign out
-                    </a>
-                  </div>
-                )}
+                      <a className="block px-4 py-2 text-gray-700 hover:bg-gray-100 dark:text-white dark:hover:bg-gray-600">
+                        Settings
+                      </a>
+                      <a className="block px-4 py-2 text-gray-700 hover:bg-gray-100 dark:text-white dark:hover:bg-gray-600">
+                        Help
+                      </a>
+                      <a
+                        onClick={setLogout}
+                        className="block px-4 py-2 text-gray-700 hover:bg-gray-100 dark:text-white dark:hover:bg-gray-600"
+                      >
+                        Sign out
+                      </a>
+                    </div>
+                  )}
+                </div>
               </div>
             </div>
           </div>
