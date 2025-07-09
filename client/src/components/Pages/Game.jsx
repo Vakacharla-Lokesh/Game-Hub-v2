@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef, useCallback } from "react";
-import { allGames, getGenres, getGamePerGenres } from "../../api/GameService";
+import { allGames, getGenres } from "../../api/GameService";
 import Sidebar from "../Sidebar";
 import Footer from "../layout/Footer";
 import { useNavigate } from "react-router-dom";
@@ -63,7 +63,8 @@ const featuredTrailers = [
     videoUrl:
       "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/Sintel.mp4",
     thumbnail: "https://picsum.photos/1920/1080?random=4",
-    description: "Uncover ancient secrets in a magical realm full of mystery and beauty",
+    description:
+      "Uncover ancient secrets in a magical realm full of mystery and beauty",
   },
   {
     id: 5,
@@ -71,7 +72,8 @@ const featuredTrailers = [
     videoUrl:
       "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/TearsOfSteel.mp4",
     thumbnail: "https://picsum.photos/1920/1080?random=5",
-    description: "Compete in the ultimate PvP combat arena with global challengers",
+    description:
+      "Compete in the ultimate PvP combat arena with global challengers",
   },
 ];
 
@@ -404,14 +406,9 @@ export default function Game() {
               </div>
             </section>
           </div>
-
-          <Footer className="fixed bottom-0 left-0 w-full z-50" />
         </main>
       </div>
+      <Footer className="fixed bottom-0 left-0 w-full z-50" />
     </>
   );
 }
-
-
-
-

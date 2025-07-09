@@ -49,9 +49,35 @@ const getGameCountByGenre = async (req, res) => {
   }
 };
 
+const getGameByGenre = async (req, res) => {
+  try {
+    const games = await Game.find({ genre: req.params.genre });
+    if (games.length === 0)
+      return res.status(404).json({ msg: "No games found for this genre" });
+    res.json(games);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+};
+
+const getGamesBySearch = async (req, res) => {
+  try {
+    const query = req.query.q;
+    if (!query)
+      return res.status(400).json({ error: "No search query provided" });
+    // Search by title (case-insensitive)
+    const games = await Game.find({ title: { $regex: query, $options: "i" } });
+    res.json(games);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+};
+
 module.exports = {
   findAllGames,
   findGameById,
   findAllGenres,
   getGameCountByGenre,
+  getGameByGenre,
+  getGamesBySearch,
 };

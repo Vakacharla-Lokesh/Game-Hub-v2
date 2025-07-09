@@ -63,6 +63,15 @@ function LoginPage() {
       {/* Right-aligned Form Container */}
       <div className="relative z-10 h-full flex items-center justify-end pr-20">
         <div className="bg-black/70 p-8 rounded-lg w-full max-w-md">
+          <div>
+            <Link
+              to="/"
+              className="flex items-center text-white px-1 py-1"
+            >
+              <ChevronLeft className="w-5 h-5 mr-2" />
+              Back to Home
+            </Link>
+          </div>
           <h1 className="text-4xl font-bold text-white mb-8 text-center">
             Welcome Back
           </h1>
@@ -117,7 +126,13 @@ function LoginPage() {
 
           <div className="mt-4 flex justify-center items-center">
             <p className="text-white text-sm ">
-              New User? <a href="/sign-up" className="text-red-600">Sign up</a>
+              New User?{" "}
+              <a
+                href="/sign-up"
+                className="text-red-600"
+              >
+                Sign up
+              </a>
             </p>
           </div>
         </div>

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { decodeToken, removeToken } from "../../api/tokenService";
 import { useNavigate } from "react-router-dom";
 import { Search } from "lucide-react";
+import { searchGames } from "../../api/GameService";
 
 function Header() {
   const [userDropdownOpen, setUserDropdownOpen] = useState(false);
@@ -27,6 +28,20 @@ function Header() {
     navigate("/");
   };
 
+  const [searchQuery, setSearchQuery] = useState("");
+
+  const handleKeyDown = async (e) => {
+    if (e.key === "Enter" && searchQuery.trim() !== "") {
+      try {
+        const response = await searchGames(searchQuery);
+
+        console.log("the fetched games are: ", response);
+      } catch (error) {
+        console.log(`Error in searching games: ${error}`);
+      }
+    }
+  };
+
   return (
     <>
       <div className="sticky top-0 z-90">
@@ -46,7 +61,7 @@ function Header() {
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"
-                    stroke="yellow"
+                    className="stroke-yellow-500"
                     stroke-width="2"
                     stroke-linecap="round"
                     stroke-linejoin="round"
@@ -87,15 +102,23 @@ function Header() {
             {/* Profile Section */}
 
             <div className="flex items-center justify-between">
-              <div className="mr-2 flex text-white">
+              <div className="mr-4 flex text-white items-center">
                 <Search
                   onClick={() => {
                     setSearchVisible(!searchVisible);
                   }}
+                  className="h-[35px]"
                 />
                 {/* <p>Search</p> */}
                 {searchVisible && (
-                  <input className="bg-white rounded-2xl text-black pl-1.5"></input>
+                  <input
+                    type="text"
+                    value={searchQuery}
+                    onChange={(e) => setSearchQuery(e.target.value)}
+                    onKeyDown={handleKeyDown}
+                    placeholder="Search games..."
+                    className=" bg-transparent border-white border-2 rounded-2xl text-white pl-1.5 ml-2 h-[30px]"
+                  />
                 )}
               </div>
               <div
