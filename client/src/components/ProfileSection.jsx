@@ -5,7 +5,7 @@ export default function ProfileSection() {
     {
       name: "VAKACHARLA LOKESH",
       role: "Full Stack Developer",
-      image: "https://i.pravatar.cc/300?img=11",
+      image: "/assets/images/lokesh_profile.jpg",
       linkedin:
         "https://www.linkedin.com/in/lokesh-vakacharla-00472a250?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
       instagram: "#",
@@ -17,7 +17,7 @@ export default function ProfileSection() {
     {
       name: "KHUSHI OMAR",
       role: "Frontend Developer",
-      image: "https://i.pravatar.cc/300?img=32",
+      image: "/assets/images/khushi_profile.jpg",
       linkedin: "#",
       instagram: "#",
       email: "khushi@example.com",
