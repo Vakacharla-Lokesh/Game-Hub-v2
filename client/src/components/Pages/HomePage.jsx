@@ -3,7 +3,6 @@ import Header from "../layout/Header";
 import Footer from "../layout/Footer";
 
 import Sidebar from "../Sidebar";
-import CategoryBlock from "../CategoryBlock";
 import GameCard from "../GameCard";
 import { useEffect, useState } from "react";
 import { allGames } from "../../api/GameService";

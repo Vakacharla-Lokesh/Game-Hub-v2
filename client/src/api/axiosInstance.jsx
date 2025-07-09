@@ -1,10 +1,10 @@
-import axios from 'axios';
+import axios from "axios";
 
 const axiosInstance = axios.create({
   baseURL: import.meta.env.VITE_API_BASE_URL,
   headers: {
-    'Content-Type': 'application/json',
-  }
+    "Content-Type": "application/json",
+  },
 });
 
 export const apiCall = async (method, endpoint, data = null) => {
@@ -16,7 +16,7 @@ export const apiCall = async (method, endpoint, data = null) => {
     });
     return response.data;
   } catch (error) {
-    console.error('API Error:', error);
+    console.error("API Error:", error);
     throw error;
   }
 };

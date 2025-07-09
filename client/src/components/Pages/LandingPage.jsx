@@ -1,6 +1,6 @@
-import LandingHero from '../LandingHero';
-import ProfileSection from '../ProfileSection';
-import Footer from '../layout/Footer';
+import LandingHero from "../LandingHero";
+import ProfileSection from "../ProfileSection";
+import Footer from "../layout/Footer";
 
 export default function LandingPage() {
   return (

@@ -8,7 +8,12 @@ const registerUser = async (req, res) => {
     const hashedPassword = await hash(password, 10);
     const user = new User({ userName, emailId, password: hashedPassword });
     await user.save();
-    res.status(201).json({ message: "User created" });
+    const token = sign(
+      { userId: user._id, user_name: user.userName, email_id: emailId },
+      process.env.JWT_SECRET,
+      { expiresIn: "1d" }
+    );
+    res.json({ token });
   } catch (error) {
     res.status(400).json({ error: error.message });
   }
@@ -19,12 +24,12 @@ const loginUser = async (req, res) => {
     const { emailId, password } = req.body;
     const user = await User.findOne({ emailId });
     if (!user) {
-      return res.status(404).json({ error: "User not found" });
+      return res.status(401).json({ message: "User not found" });
     }
 
     const isMatch = await compare(password, user.password);
     if (!isMatch) {
-      return res.status(400).json({ error: "Invalid credentials" });
+      return res.status(401).json({ message: "Invalid credentials" });
     }
 
     const token = sign(

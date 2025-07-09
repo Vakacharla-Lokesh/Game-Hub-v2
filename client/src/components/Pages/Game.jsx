@@ -15,6 +15,7 @@ import {
   VolumeX,
 } from "lucide-react";
 import GameCard from "../GameCard";
+import Header from "../layout/Header";
 
 const genres = getGenres();
 
@@ -202,208 +203,212 @@ export default function Game() {
   const currentTrailer = featuredTrailers[currentTrailerIndex];
 
   return (
-    <div className="flex min-h-screen bg-gradient-to-b from-gray-900 to-black border-r border-gray-800 p-6 text-white relative overflow-hidden">
-      {/* Animated background pattern */}
-      <div className="fixed inset-0 opacity-10 pointer-events-none">
-        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-purple-500 rounded-full blur-3xl animate-pulse"></div>
-        <div className="absolute top-3/4 right-1/4 w-72 h-72 bg-violet-500 rounded-full blur-3xl animate-pulse delay-1000"></div>
-        <div className="absolute top-1/2 left-1/2 w-64 h-64 bg-indigo-500 rounded-full blur-3xl animate-pulse delay-2000"></div>
-      </div>
+    <>
+      <Header />
+      <div className="flex min-h-screen bg-gradient-to-b from-gray-900 to-black border-r border-gray-800 p-6 text-white relative overflow-hidden">
+        {/* Animated background pattern */}
+        <div className="fixed inset-0 opacity-10 pointer-events-none">
+          <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-purple-500 rounded-full blur-3xl animate-pulse"></div>
+          <div className="absolute top-3/4 right-1/4 w-72 h-72 bg-violet-500 rounded-full blur-3xl animate-pulse delay-1000"></div>
+          <div className="absolute top-1/2 left-1/2 w-64 h-64 bg-indigo-500 rounded-full blur-3xl animate-pulse delay-2000"></div>
+        </div>
 
-      {/* Geometric pattern overlay */}
-      <div className="fixed inset-0 opacity-5 pointer-events-none">
-        <div
-          style={{
-            backgroundImage: `radial-gradient(circle at 2px 2px, purple 1px, transparent 0)`,
-            backgroundSize: "40px 40px",
-          }}
-          className="w-full h-full"
-        ></div>
-      </div>
+        {/* Geometric pattern overlay */}
+        <div className="fixed inset-0 opacity-5 pointer-events-none">
+          <div
+            style={{
+              backgroundImage: `radial-gradient(circle at 2px 2px, purple 1px, transparent 0)`,
+              backgroundSize: "40px 40px",
+            }}
+            className="w-full h-full"
+          ></div>
+        </div>
 
-      <Sidebar
-        onGenreClick={handleGenreClick}
-        onCategoryClick={handleCategoryClick}
-        selectedGenre={selectedGenre}
-        selectedCategory={selectedCategory}
-      />
-    
+        <Sidebar
+          onGenreClick={handleGenreClick}
+          onCategoryClick={handleCategoryClick}
+          selectedGenre={selectedGenre}
+          selectedCategory={selectedCategory}
+        />
 
-      <main className="flex-1 overflow-auto relative z-10">
-        {/* Video Trailer Section */}
+        <main className="flex-1 overflow-auto relative z-10">
+          {/* Video Trailer Section */}
 
-        <section className="relative h-[70vh] overflow-hidden mb-12">
-          <div className="absolute inset-0">
-            <video
-              ref={videoRef}
-              key={currentTrailer.id}
-              className="w-full h-full object-cover"
-              autoPlay
-              muted={isMuted}
-              loop
-              playsInline
-            >
-              <source
-                src={currentTrailer.videoUrl}
-                type="video/mp4"
-              />
-              <img
-                src={currentTrailer.thumbnail}
-                alt={currentTrailer.title}
+          <section className="relative h-[70vh] overflow-hidden mb-12">
+            <div className="absolute inset-0">
+              <video
+                ref={videoRef}
+                key={currentTrailer.id}
                 className="w-full h-full object-cover"
-              />
-            </video>
-            <div className="absolute inset-0 bg-gradient-to-r from-black via-purple-900/70 to-transparent"></div>
-            <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent"></div>
-          </div>
+                autoPlay
+                muted={isMuted}
+                loop
+                playsInline
+              >
+                <source
+                  src={currentTrailer.videoUrl}
+                  type="video/mp4"
+                />
+                <img
+                  src={currentTrailer.thumbnail}
+                  alt={currentTrailer.title}
+                  className="w-full h-full object-cover"
+                />
+              </video>
+              <div className="absolute inset-0 bg-gradient-to-r from-black via-purple-900/70 to-transparent"></div>
+              <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent"></div>
+            </div>
 
-          {/* Video Controls */}
-          <div className="absolute top-6 right-6 z-20">
-            <button
-              onClick={() => setIsMuted(!isMuted)}
-              className="bg-black/50 backdrop-blur-sm text-white p-3 rounded-full hover:bg-black/70 transition-all duration-300 border border-purple-500/30"
-            >
-              {isMuted ? (
-                <VolumeX className="w-5 h-5" />
-              ) : (
-                <Volume2 className="w-5 h-5" />
-              )}
-            </button>
-          </div>
-
-          {/* Trailer Navigation Dots */}
-          <div className="absolute bottom-6 left-1/2 transform -translate-x-1/2 flex gap-3 z-20">
-            {featuredTrailers.map((_, index) => (
+            {/* Video Controls */}
+            <div className="absolute top-6 right-6 z-20">
               <button
-                key={index}
-                onClick={() => setCurrentTrailerIndex(index)}
-                className={`w-3 h-3 rounded-full transition-all duration-300 ${
-                  index === currentTrailerIndex
-                    ? "bg-purple-400 scale-125"
-                    : "bg-white/50 hover:bg-white/80"
-                }`}
-              />
-            ))}
-          </div>
+                onClick={() => setIsMuted(!isMuted)}
+                className="bg-black/50 backdrop-blur-sm text-white p-3 rounded-full hover:bg-black/70 transition-all duration-300 border border-purple-500/30"
+              >
+                {isMuted ? (
+                  <VolumeX className="w-5 h-5" />
+                ) : (
+                  <Volume2 className="w-5 h-5" />
+                )}
+              </button>
+            </div>
 
-          <div className="relative z-10 flex items-center h-full px-12">
-            <div className="max-w-3xl">
-              <div className="mb-4">
-                <span className="bg-gradient-to-r from-purple-500 to-violet-500 text-white text-sm px-4 py-2 rounded-full font-bold border border-purple-400/50">
-                  🎮 Featured Trailer
-                </span>
-              </div>
-              <h1 className="text-6xl font-bold bg-gradient-to-r from-purple-400 via-violet-400 to-pink-400 bg-clip-text text-transparent mb-4 leading-tight">
-                {currentTrailer.title}
-              </h1>
-              <p className="text-xl text-gray-300 mb-8 max-w-2xl">
-                {currentTrailer.description}
-              </p>
-              <div className="flex gap-4">
+            {/* Trailer Navigation Dots */}
+            <div className="absolute bottom-6 left-1/2 transform -translate-x-1/2 flex gap-3 z-20">
+              {featuredTrailers.map((_, index) => (
                 <button
-                  onClick={() => handlePlay(currentTrailer)}
-                  className="bg-gradient-to-r from-purple-600 to-violet-600 text-white font-bold px-8 py-4 rounded-full hover:from-purple-500 hover:to-violet-500 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-purple-500/50 border border-purple-400/50"
-                >
-                  <Play
-                    className="w-6 h-6 inline mr-2"
-                    fill="currentColor"
-                  />
-                  Play Now
-                </button>
-                <button className="bg-black/30 backdrop-blur-sm text-white font-bold px-8 py-4 rounded-full hover:bg-black/50 transition-all duration-300 border border-purple-400/30">
-                  Watch Trailer
-                </button>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <div className="px-8 pb-8 relative">
-          {(selectedGenre || selectedCategory) && (
-            <div className="mb-8">
-              <h2 className="text-4xl font-bold bg-gradient-to-r from-purple-400 to-violet-400 bg-clip-text text-transparent mb-2">
-                {selectedGenre || selectedCategory}
-              </h2>
-              <div className="w-24 h-1 bg-gradient-to-r from-purple-400 to-violet-500 rounded-full"></div>
-            </div>
-          )}
-
-          {!selectedGenre && !selectedCategory && trendingGames.length > 0 && (
-            <section
-              ref={trendingRef}
-              className="mb-12"
-            >
-              <div className="flex items-center gap-3 mb-6">
-                <TrendingUp className="w-8 h-8 text-red-400" />
-                <h2 className="text-3xl font-bold bg-gradient-to-r from-purple-400 to-violet-400 bg-clip-text text-transparent">
-                  Trending Now
-                </h2>
-                <div className="flex-1 h-px bg-gradient-to-r from-red-400 via-purple-400 to-transparent"></div>
-              </div>
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-                {trendingGames.map((game) => (
-                  <GameCard
-                    key={`trending-${game.id}`}
-                    game={game}
-                    onPlay={handlePlay}
-                  />
-                ))}
-              </div>
-            </section>
-          )}
-
-          {!selectedGenre && !selectedCategory && newGames.length > 0 && (
-            <section
-              ref={newReleasesRef}
-              className="mb-12"
-            >
-              <div className="flex items-center gap-3 mb-6">
-                <Sparkles className="w-8 h-8 text-green-400" />
-                <h2 className="text-3xl font-bold bg-gradient-to-r from-purple-400 to-violet-400 bg-clip-text text-transparent">
-                  New Releases
-                </h2>
-                <div className="flex-1 h-px bg-gradient-to-r from-green-400 via-purple-400 to-transparent"></div>
-              </div>
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {newGames.map((game) => (
-                  <GameCard
-                    key={`new-${game.id}`}
-                    game={game}
-                    onPlay={handlePlay}
-                  />
-                ))}
-              </div>
-            </section>
-          )}
-
-          <section ref={popularRef}>
-            {!selectedGenre && !selectedCategory && (
-              <div className="flex items-center gap-3 mb-6">
-                <Crown className="w-8 h-8 text-purple-400" />
-                <h2 className="text-3xl font-bold bg-gradient-to-r from-purple-400 to-violet-400 bg-clip-text text-transparent">
-                  All Games
-                </h2>
-                <div className="flex-1 h-px bg-gradient-to-r from-yellow-400 to-yellow-600 to-transparent"></div>
-              </div>
-            )}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-              {(selectedGenre || selectedCategory
-                ? filteredGames
-                : popularGames
-              ).map((game) => (
-                <GameCard
-                  key={game.id}
-                  game={game}
-                  onPlay={handlePlay}
+                  key={index}
+                  onClick={() => setCurrentTrailerIndex(index)}
+                  className={`w-3 h-3 rounded-full transition-all duration-300 ${
+                    index === currentTrailerIndex
+                      ? "bg-purple-400 scale-125"
+                      : "bg-white/50 hover:bg-white/80"
+                  }`}
                 />
               ))}
             </div>
-          </section>
-        </div>
 
-        <Footer className="fixed bottom-0 left-0 w-full z-50" />
-      </main>
-    </div>
+            <div className="relative z-10 flex items-center h-full px-12">
+              <div className="max-w-3xl">
+                <div className="mb-4">
+                  <span className="bg-gradient-to-r from-purple-500 to-violet-500 text-white text-sm px-4 py-2 rounded-full font-bold border border-purple-400/50">
+                    🎮 Featured Trailer
+                  </span>
+                </div>
+                <h1 className="text-6xl font-bold bg-gradient-to-r from-purple-400 via-violet-400 to-pink-400 bg-clip-text text-transparent mb-4 leading-tight">
+                  {currentTrailer.title}
+                </h1>
+                <p className="text-xl text-gray-300 mb-8 max-w-2xl">
+                  {currentTrailer.description}
+                </p>
+                <div className="flex gap-4">
+                  <button
+                    onClick={() => handlePlay(currentTrailer)}
+                    className="bg-gradient-to-r from-purple-600 to-violet-600 text-white font-bold px-8 py-4 rounded-full hover:from-purple-500 hover:to-violet-500 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-purple-500/50 border border-purple-400/50"
+                  >
+                    <Play
+                      className="w-6 h-6 inline mr-2"
+                      fill="currentColor"
+                    />
+                    Play Now
+                  </button>
+                  <button className="bg-black/30 backdrop-blur-sm text-white font-bold px-8 py-4 rounded-full hover:bg-black/50 transition-all duration-300 border border-purple-400/30">
+                    Watch Trailer
+                  </button>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <div className="px-8 pb-8 relative">
+            {(selectedGenre || selectedCategory) && (
+              <div className="mb-8">
+                <h2 className="text-4xl font-bold bg-gradient-to-r from-purple-400 to-violet-400 bg-clip-text text-transparent mb-2">
+                  {selectedGenre || selectedCategory}
+                </h2>
+                <div className="w-24 h-1 bg-gradient-to-r from-purple-400 to-violet-500 rounded-full"></div>
+              </div>
+            )}
+
+            {!selectedGenre &&
+              !selectedCategory &&
+              trendingGames.length > 0 && (
+                <section
+                  ref={trendingRef}
+                  className="mb-12"
+                >
+                  <div className="flex items-center gap-3 mb-6">
+                    <TrendingUp className="w-8 h-8 text-red-400" />
+                    <h2 className="text-3xl font-bold bg-gradient-to-r from-purple-400 to-violet-400 bg-clip-text text-transparent">
+                      Trending Now
+                    </h2>
+                    <div className="flex-1 h-px bg-gradient-to-r from-red-400 via-purple-400 to-transparent"></div>
+                  </div>
+                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                    {trendingGames.map((game) => (
+                      <GameCard
+                        key={`trending-${game.id}`}
+                        game={game}
+                        onPlay={handlePlay}
+                      />
+                    ))}
+                  </div>
+                </section>
+              )}
+
+            {!selectedGenre && !selectedCategory && newGames.length > 0 && (
+              <section
+                ref={newReleasesRef}
+                className="mb-12"
+              >
+                <div className="flex items-center gap-3 mb-6">
+                  <Sparkles className="w-8 h-8 text-green-400" />
+                  <h2 className="text-3xl font-bold bg-gradient-to-r from-purple-400 to-violet-400 bg-clip-text text-transparent">
+                    New Releases
+                  </h2>
+                  <div className="flex-1 h-px bg-gradient-to-r from-green-400 via-purple-400 to-transparent"></div>
+                </div>
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                  {newGames.map((game) => (
+                    <GameCard
+                      key={`new-${game.id}`}
+                      game={game}
+                      onPlay={handlePlay}
+                    />
+                  ))}
+                </div>
+              </section>
+            )}
+
+            <section ref={popularRef}>
+              {!selectedGenre && !selectedCategory && (
+                <div className="flex items-center gap-3 mb-6">
+                  <Crown className="w-8 h-8 text-purple-400" />
+                  <h2 className="text-3xl font-bold bg-gradient-to-r from-yellow-400 to-yellow-600 bg-clip-text text-transparent">
+                    All Games
+                  </h2>
+                  <div className="flex-1 h-px bg-gradient-to-r from-yellow-400 to-yellow-600 to-transparent"></div>
+                </div>
+              )}
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                {(selectedGenre || selectedCategory
+                  ? filteredGames
+                  : popularGames
+                ).map((game) => (
+                  <GameCard
+                    key={game.id}
+                    game={game}
+                    onPlay={handlePlay}
+                  />
+                ))}
+              </div>
+            </section>
+          </div>
+
+          <Footer className="fixed bottom-0 left-0 w-full z-50" />
+        </main>
+      </div>
+    </>
   );
 }
 
