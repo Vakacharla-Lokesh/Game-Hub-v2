@@ -145,6 +145,7 @@ export default function Game() {
       <div className="min-h-screen bg-gradient-to-br from-gray-900 to-black rounded-xl overflow-hidden shadow-lg hover:shadow-2xl hover:shadow-yellow-500/20 transition-all duration-300 hover:-translate-y-2 border border-gray-800 hover:border-yellow-500/50 flex justify-center items-center">
         <div className="relative">
           {/* Animated background pattern */}
+          
           <div className="absolute inset-0 opacity-20">
             <div className="absolute top-0 left-0 w-72 h-72 bg-purple-500 rounded-full blur-3xl animate-pulse"></div>
             <div className="absolute bottom-0 right-0 w-96 h-96 bg-violet-500 rounded-full blur-3xl animate-pulse delay-1000"></div>
