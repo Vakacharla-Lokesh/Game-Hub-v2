@@ -9,11 +9,13 @@ import FAQ from "./components/Support Pages/FAQ.jsx";
 import ContactPage from "./components/Support Pages/ContactPage.jsx";
 import HelpForm from "./components/Pages/help.jsx";
 import SignUpPage from "./components/logins/SignUpPage.jsx";
+import PlayGame from "./components/Pages/PlayGame.jsx";
 
 function App() {
   return (
     <BrowserRouter>
       <Routes>
+        {/* LOGIN ROUTES */}
         <Route
           path="/login"
           element={<LoginPage />}
@@ -22,6 +24,8 @@ function App() {
           path="/sign-up"
           element={<SignUpPage />}
         />
+
+        {/* PLAY GAME ROUTES */}
         <Route
           path="/home"
           element={<HomePage />}
@@ -37,6 +41,11 @@ function App() {
         <Route
           path="/games"
           element={<Game />}
+        />
+
+        <Route
+          path="/playgames/:id"
+          element={<PlayGame />}
         />
 
         {/* SUPPORT PAGE ROUTES */}

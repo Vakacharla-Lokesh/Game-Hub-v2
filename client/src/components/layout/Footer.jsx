@@ -21,7 +21,7 @@ function Footer() {
               ></div>
             ))}
           </div>
-          <h1 className="text-2xl font-semibold tracking-wide">GameVerse</h1>
+          <h1 className="text-2xl font-semibold tracking-wide">GameHub</h1>
         </Link>
 
         {/* About Us */}
@@ -70,7 +70,7 @@ function Footer() {
       {/* Bottom bar */}
       <div className="flex flex-col md:flex-row justify-center items-center text-sm text-black dark:text-white">
         <div className="flex flex-col items-center justify-center">
-          <p className="text-xl">© {new Date().getFullYear()} GameVerse</p>
+          <p className="text-xl">© {new Date().getFullYear()} GameHub</p>
           <p>Terms of Service</p>
         </div>
       </div>
